@@ -663,8 +663,9 @@ a img:hover {
 
 .blog-images {
     max-height: 250px;
+    max-width: 350px;
     margin-right: 5px;
-    width: auto; /* Maintain aspect ratio */
+    /* width: auto;  Maintain aspect ratio */
 }
 
 /*------------------------------------------------------------------------------------------*/
