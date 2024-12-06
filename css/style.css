@@ -47,6 +47,7 @@ body {
     padding: 0;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    background-color: #fff;
 }
 
 p {
@@ -421,6 +422,75 @@ section {
     left: 50%;
 }
 
+.book {
+    width: 75px;
+    height: 75px;
+    background-image: url("../images/book-icon-clipart-transparent-background-free-png.jpeg"); 
+    position: absolute;
+    background-size: contain;
+    background-color: transparent;
+    animation: heart-burst 0.8s ease-out forwards;
+    top: 50%;
+    left: 50%;
+}
+
+.bookcontainer {
+    display: flex;
+    height: 3000px;
+}
+
+.book-images {
+    height: 600px;
+    width: 250px;
+    margin: auto;
+    margin-top: 2px;
+    object-fit: contain;
+    border: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -webkit-backface-visibility: hidden;
+}
+
+.book-images:hover {
+    opacity: 0.5;
+    content: "+";
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /* --------- 2.4 Navigation ---------- */
 
