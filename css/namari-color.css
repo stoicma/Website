@@ -22,27 +22,27 @@ body {
 /* Default Link Color */
 
 a, .la-ball-triangle-path {
-    color:#d2b356;
+    color:#2563eb;
 }
 
 a:hover, #header.nav-solid nav a:hover {
-    color:#d2b356;
+    color:#1d4ed8;
 }
 
 /* Default Icon Color */
 
 .icon i {
-    color:#d2b356;
+    color:#2563eb;
 }
 
 /* Border Color */
 
 #banner .section-heading:before, .testimonial.classic footer:before {
-    background: #d2b356;
+    background: #2563eb;
 }
 
 .pricing-block-content:hover {
-    border-color:#d2b356;
+    border-color:#2563eb;
 }
 
 
@@ -68,8 +68,8 @@ a:hover, #header.nav-solid nav a:hover {
 /* Navigation Active State */
 
 #header.nav-solid .active {
-    color: #d2b356;
-    border-color: #d2b356;
+    color: #2563eb;
+    border-color: #2563eb;
 }    
 
 
@@ -82,7 +82,7 @@ a:hover, #header.nav-solid nav a:hover {
 /* Primary Background and Text Colors */
 
 .primary-color, .featured .pricing {
-    background-color:#d2b356;
+    background-color:#2563eb;
 }
 
 .primary-color, .primary-color .section-title, .primary-color .section-subtitle, .featured .pricing, .featured .pricing p {
@@ -90,7 +90,7 @@ a:hover, #header.nav-solid nav a:hover {
 }
 
 .section-heading h2:after {
-    background:#d2b356;
+    background:#2563eb;
     content:"";
     display:block;
     width:30px;
@@ -124,8 +124,7 @@ a:hover, #header.nav-solid nav a:hover {
 /* Banner Background and Text Colors */
 
 #banner {
-   /* background: url("../images/banner-images/background-image-telescope2.jpg") no-repeat center
-    */
+    background: linear-gradient(135deg, #f0f7ff 0%, #e0f0ff 100%);
 }
 
 
@@ -279,8 +278,9 @@ h6 {
 /* Button Hover Color */
 
 .button:hover,  input[type="submit"]:hover {
-    border-color:#d2b356;
-    color:#d2b356;
+    border-color:#2563eb;
+    color:#2563eb;
+    background-color:#f0f7ff;
 }
 
 
@@ -306,8 +306,9 @@ h6 {
 /* Button Hover Color */
 
 #banner .button:hover {
-    color:#d2b356;
-    border-color:#d2b356;
+    color:#fff;
+    background-color:#2563eb;
+    border-color:#2563eb;
 }
 
 
