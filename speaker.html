@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>Speaking & Publications - Marko Stokić</title>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="blockchain speaker, AI speaker, TEE technology, web3 conferences, blockchain consulting, speaking engagements">
+    <meta name="description" content="Speaking engagements, conference talks, and published work by Marko Stokić - Blockchain & AI consultant specializing in TEEs, agent infrastructure, and privacy-preserving compute.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+
+    <!-- Main CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Namari Color CSS -->
+    <link rel="stylesheet" href="css/namari-color.css">
+
+    <!--Icon Fonts - Font Awesome Icons-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Animate CSS-->
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+
+    <!--Google Webfonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for speaker page -->
+    <style>
+        .speaking-item {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .speaking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .speaking-header {
+            margin-bottom: 20px;
+        }
+        
+        .speaking-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
+        
+        .speaking-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .speaking-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .speaking-meta i {
+            color: #2563eb;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #f0f7ff;
+            color: #2563eb;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .speaking-summary {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .speaking-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            padding: 4px 10px;
+            background-color: #f5f5f5;
+            color: #666;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .article-item {
+            padding: 25px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .article-publication {
+            color: #2563eb;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        #content {
+            padding-top: 100px;
+        }
+    </style>
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        _paq.push(["setDoNotTrack", true]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="//analytics.markosuniverse.xyz/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+  <!-- End Matomo Code -->
+  
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!--End of Preloader-->
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5" style="min-height: 200px;">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+                        <img src="images/dalleLogoWebsite.png" id="banner-logo" alt="Marko Stokić"/>
+                        <img src="images/dalleLogoWebsite.png" id="navigation-logo" alt="Marko Stokić"/>
+                    </div>
+                    <!--End of Logo-->
+
+                    <aside>
+                        <!--Social Icons in Header-->
+                        <ul class="social-icons">
+                            <li>
+                                <a target="_blank" title="LinkedIn" href="http://www.linkedin.com/in/markostokic">
+                                    <i class="fa fa-linkedin fa-1x"></i><span>LinkedIn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Twitter" href="http://www.twitter.com/markowifk">
+                                    <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="GitHub" href="https://github.com/stoicma">
+                                    <i class="fa fa-github fa-1x"></i><span>GitHub</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Mail" href="mailto:marko.stokic@proton.me?subject=Hi%20Marko%Line&body=Nice%20to%20meet%20you!">
+                                    <i class="fa fa-envelope-open-o fa-1x"></i><span>Mail</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!--End of Social Icons in Header-->
+                    </aside>
+
+                    <!--Main Navigation-->
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/#about">About</a>
+                            </li>
+                            <li>
+                                <a href="/#services">Services</a>
+                            </li>
+                            <li>
+                                <a href="/speaker">Speaking</a>
+                            </li>
+                            <li>
+                                <a href="/#blog">Blog</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--End of Main Navigation-->
+
+                    <div id="nav-trigger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div><!--End of Header-->
+    </header>
+
+    <!--Main Content Area-->
+    <main id="content">
+
+        <!--Speaking Section-->
+        <section id="speaking" class="scrollto">
+            <div class="row clearfix">
+                <div class="col-1">
+                    <div class="section-heading">
+                        <h3>SPEAKING ENGAGEMENTS</h3>
+                        <h2 class="section-title">Conference Talks & Panels</h2>
+                        <p class="section-subtitle">Speaking on TEEs, AI agents, privacy-preserving compute, and blockchain infrastructure at conferences worldwide.</p>
+                    </div>
+
+                    <!-- Speaking Items -->
+                    <div id="speaking-items"></div>
+
+                </div>
+            </div>
+        </section>
+        <!--End of Speaking Section-->
+
+        <!--Publications Section-->
+        <section id="publications" class="secondary-color scrollto">
+            <div class="row clearfix">
+                <div class="col-1">
+                    <div class="section-heading">
+                        <h3>PRESS & PUBLICATIONS</h3>
+                        <h2 class="section-title">Articles & Media</h2>
+                        <p class="section-subtitle">Featured articles, interviews, and published work.</p>
+                    </div>
+
+                    <!-- Placeholder for articles -->
+                    <div class="article-item">
+                        <h3 class="article-title">Coming Soon</h3>
+                        <p class="article-excerpt">Published articles and press coverage will be featured here.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--End of Publications Section-->
+
+    </main>
+    <!--End Main Content Area-->
+
+    <!--Footer-->
+    <footer id="landing-footer" class="clearfix">
+        <div class="row clearfix">
+
+            <p id="copyright" class="col-2">© 2025 Marko Stokić. All rights reserved.</p>
+
+            <!--Social Icons in Footer-->
+            <ul class="col-2 social-icons">
+                <li>
+                    <a target="_blank" title="LinkedIn" href="http://www.linkedin.com/in/markostokic">
+                        <i class="fa fa-linkedin fa-1x"></i><span>LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Twitter" href="http://www.twitter.com/markowifk">
+                        <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="GitHub" href="https://github.com/stoicma">
+                        <i class="fa fa-github fa-1x"></i><span>GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Mail" href="mailto:marko.stokic@proton.me?subject=Hi%20Marko%Line&body=Nice%20to%20meet%20you!">
+                        <i class="fa fa-envelope-open-o fa-1x"></i><span>Mail</span>
+                    </a>
+                </li>
+            </ul>
+            <!--End of Social Icons in Footer-->
+        </div>
+    </footer>
+    <!--End of Footer-->
+
+</div>
+
+<!-- JavaScript resources -->
+<script src="js/jquery.1.8.3.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/featherlight.min.js"></script>
+<script src="js/featherlight.gallery.min.js"></script>
+<script src="js/jquery.enllax.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.stickyNavbar.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/images-loaded.min.js"></script>
+<script src="js/lightbox.min.js"></script>
+<script src="js/site.js"></script>
+
+<!-- Speaking Data and Rendering -->
+<script>
+const speakingData = [
+  {
+    "title": "ETHDam 2025 – Keynote",
+    "event": "ETHDam",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "role": "Keynote",
+    "date": "2025-05",
+    "video_url": "https://www.youtube.com/watch?v=GTIG_gcVTgI",
+    "summary": "Keynote on "trustless agents": a blueprint for verifiable, accountable AI that signs, settles, and proves actions on public chains without exposing secrets.",
+    "tags": ["Trustless Agents", "Accountability", "Attestation", "On-chain", "Secrets Management"]
+  },
+  {
+    "title": "AI Agents Day – Dubai",
+    "event": "AI Agents Day",
+    "city": "Dubai",
+    "country": "UAE",
+    "role": "Speaker",
+    "date": "2025-05",
+    "video_url": "https://www.youtube.com/watch?v=m6uN1D2KbWo",
+    "summary": "Talked through an end-to-end agent pipeline that executes on-chain, using TEEs for policy-guardrails, key custody, and verifiable actions tied to on-chain state.",
+    "tags": ["AI Agents", "On-chain Actions", "Key Management", "Policy Guardrails", "TEEs", "Verification"]
+  },
+  {
+    "title": "Afternoon TEE Party",
+    "event": "Afternoon TEE Party",
+    "city": "Dubai",
+    "country": "UAE",
+    "role": "Panelist",
+    "date": "2025-05",
+    "video_url": "https://www.youtube.com/watch?v=JvPw8llmaHc",
+    "segment_start": "00:40:30",
+    "segment_end": "01:13:00",
+    "summary": "Joined a technical panel on how TEEs enable verifiable AI agents, covering data confidentiality, attestation, and the path from prototypes to production on EVM.",
+    "tags": ["TEEs", "Attestation", "AI Agents", "On-chain Privacy", "EVM", "Production"],
+    "position_on_stage": "far right"
+  },
+  {
+    "title": "Afternoon TEE Party (Moderator)",
+    "event": "Afternoon TEE Party",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "role": "Moderator",
+    "date": "2024-11",
+    "video_url": "https://www.youtube.com/watch?v=2XBQsvLVzyc",
+    "segment_start": "00:28:10",
+    "summary": "Moderated a discussion on the TEE stack for web3, steering debate on threat models, developer ergonomics, and where TEEs beat ZK—plus real deployment hurdles.",
+    "tags": ["TEEs", "Threat Models", "DevEx", "ZK vs TEE", "Security", "Deployments"],
+    "position_on_stage": "far left"
+  },
+  {
+    "title": "Oasis Rendez-Vous – Brussels",
+    "event": "Oasis Rendez-Vous",
+    "city": "Brussels",
+    "country": "Belgium",
+    "role": "Moderator",
+    "date": "2024",
+    "video_url": "https://www.youtube.com/watch?v=aUiI0K-IDdg",
+    "segment_start": "00:12:08",
+    "segment_end": "00:44:10",
+    "summary": "Led a session on privacy-preserving compute with Oasis, focusing on confidential smart contracts, user consent, and practical patterns for combining TEEs and EVM.",
+    "tags": ["Oasis", "Confidential Compute", "Smart Contracts", "Consent", "Privacy Patterns"]
+  },
+  {
+    "title": "Nebular 2024 – Panel",
+    "event": "Nebular",
+    "city": "Brussels",
+    "country": "Belgium",
+    "role": "Panelist",
+    "date": "2024",
+    "video_url": "https://www.youtube.com/watch?v=9bEi1i2c12E",
+    "summary": "Panel on agent infrastructure: data ingress, tool security, and how to audit autonomous flows when outputs trigger transactions or governance.",
+    "tags": ["Agent Infra", "Tooling", "Security", "Auditability", "Governance", "Transactions"]
+  }
+];
+
+function timeToSeconds(timeStr) {
+    const parts = timeStr.split(':').map(Number);
+    if (parts.length === 3) {
+        return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    } else if (parts.length === 2) {
+        return parts[0] * 60 + parts[1];
+    }
+    return 0;
+}
+
+function getYoutubeEmbedUrl(videoUrl, segmentStart) {
+    const videoId = videoUrl.split('v=')[1]?.split('&')[0];
+    if (!videoId) return '';
+    
+    let embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    
+    if (segmentStart) {
+        const startSeconds = timeToSeconds(segmentStart);
+        embedUrl += `?start=${startSeconds}`;
+    }
+    
+    return embedUrl;
+}
+
+function formatDate(dateStr) {
+    const [year, month] = dateStr.split('-');
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return month ? `${monthNames[parseInt(month) - 1]} ${year}` : year;
+}
+
+function renderSpeakingItems() {
+    const container = document.getElementById('speaking-items');
+    
+    speakingData.forEach(item => {
+        const embedUrl = getYoutubeEmbedUrl(item.video_url, item.segment_start);
+        
+        const html = `
+            <div class="speaking-item">
+                <div class="speaking-header">
+                    <h3 class="speaking-title">${item.title}</h3>
+                    <div class="speaking-meta">
+                        <span><i class="fa fa-calendar"></i> ${formatDate(item.date)}</span>
+                        <span><i class="fa fa-map-marker"></i> ${item.city}, ${item.country}</span>
+                        <span><i class="fa fa-building"></i> ${item.event}</span>
+                    </div>
+                    <span class="role-badge">${item.role}</span>
+                </div>
+                <p class="speaking-summary">${item.summary}</p>
+                <div class="speaking-tags">
+                    ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="video-container">
+                    <iframe 
+                        src="${embedUrl}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML += html;
+    });
+}
+
+// Render on page load
+document.addEventListener('DOMContentLoaded', renderSpeakingItems);
+</script>
+
+</body>
+</html>
+
