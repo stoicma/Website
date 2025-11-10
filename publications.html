@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>Publications - Marko Stokić</title>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="blockchain writer, AI articles, Forbes contributor, crypto journalism, technical writing">
+    <meta name="description" content="Published articles, definitions, and thought leadership by Marko Stokić on blockchain, AI, privacy, and decentralized systems.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+
+    <!-- Main CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/namari-color.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style>
+        #content {
+            padding-top: 100px;
+        }
+        
+        .publications-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .forbes-profile {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e0f0ff 100%);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .forbes-profile h3 {
+            font-size: 28px;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+        
+        .forbes-profile p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .forbes-profile .button {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .article-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .article-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-source {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #f0f7ff;
+            color: #2563eb;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        
+        .article-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-title a {
+            color: #111;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .article-title a:hover {
+            color: #2563eb;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            color: #999;
+            font-size: 13px;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+        
+        .read-more:hover {
+            gap: 10px;
+        }
+        
+        .section-divider {
+            text-align: center;
+            margin: 80px 0 60px;
+        }
+        
+        .section-divider h3 {
+            font-size: 24px;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        
+        .section-divider p {
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .forbes-profile {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        _paq.push(["setDoNotTrack", true]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="//analytics.markosuniverse.xyz/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+</head>
+<body>
+
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5" style="min-height: 200px; background: linear-gradient(135deg, #f0f7ff 0%, #e0f0ff 100%);">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <div id="logo">
+                        <img src="images/dalleLogoWebsite.png" id="banner-logo" alt="Marko Stokić"/>
+                        <img src="images/dalleLogoWebsite.png" id="navigation-logo" alt="Marko Stokić"/>
+                    </div>
+
+                    <aside>
+                        <ul class="social-icons">
+                            <li>
+                                <a target="_blank" title="LinkedIn" href="http://www.linkedin.com/in/markostokic">
+                                    <i class="fa fa-linkedin fa-1x"></i><span>LinkedIn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Twitter" href="http://www.twitter.com/markowifk">
+                                    <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="GitHub" href="https://github.com/stoicma">
+                                    <i class="fa fa-github fa-1x"></i><span>GitHub</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Mail" href="mailto:marko.stokic@proton.me">
+                                    <i class="fa fa-envelope-open-o fa-1x"></i><span>Mail</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/#about">About</a>
+                            </li>
+                            <li>
+                                <a href="/#services">Services</a>
+                            </li>
+                            <li>
+                                <a href="/#blog">Blog</a>
+                            </li>
+                            <li>
+                                <a href="/speaker">Talks</a>
+                            </li>
+                            <li>
+                                <a href="/publications">Publications</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div id="nav-trigger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="content">
+
+        <section id="publications" class="scrollto">
+            <div class="row clearfix">
+                <div class="col-1">
+                    
+                    <div class="publications-intro">
+                        <div class="section-heading text-center">
+                            <h3>PUBLICATIONS</h3>
+                            <h2 class="section-title">Articles & Thought Leadership</h2>
+                            <p class="section-subtitle">Published work on blockchain, AI, privacy, and decentralized systems across leading industry publications.</p>
+                        </div>
+                    </div>
+
+                    <!-- Forbes Profile -->
+                    <div class="forbes-profile wow fadeInUp" data-wow-delay="0.1s">
+                        <h3>📰 Forbes Contributor</h3>
+                        <p>
+                            Marko Stokić is a contributor to Forbes Digital Assets, where he covers the intersection of AI and blockchain, 
+                            confidential computing, decentralized AI infrastructure, and the innovations shaping autonomous networks. 
+                            His work demystifies complex topics at the merger of deterministic blockchains and stochastic AI models.
+                        </p>
+                        <a href="https://www.forbes.com/sites/markostokic/" target="_blank" class="button">
+                            View Forbes Profile <i class="fa fa-external-link"></i>
+                        </a>
+                    </div>
+
+                    <!-- Featured Articles -->
+                    <div class="article-grid">
+                        
+                        <!-- Article 1 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="article-content">
+                                <span class="article-source">Forbes</span>
+                                <h3 class="article-title">
+                                    <a href="https://www.forbes.com/sites/markostokic/2025/08/19/how-college-graduates-can-break-into-crypto-and-ai-careers/" target="_blank">
+                                        How College Graduates Can Break Into Crypto And AI Careers
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    A practical guide for landing six-figure jobs in AI or crypto. No ivy-league degree required. 
+                                    Explores engineering, marketing, and community tracks with actionable first-step tactics.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> Aug 19, 2025</span>
+                                    <span><i class="fa fa-eye"></i> 35.6K views</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article 2 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="article-content">
+                                <span class="article-source">Decrypt</span>
+                                <h3 class="article-title">
+                                    <a href="https://decrypt.co/309976/the-ai-doctor-will-see-all-of-you-now" target="_blank">
+                                        The AI Doctor Will See All of You Now
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Exploring the privacy implications of AI in healthcare and how confidential computing can enable 
+                                    medical AI while protecting patient data and maintaining trust.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article 3 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="article-content">
+                                <span class="article-source">CoinDesk</span>
+                                <h3 class="article-title">
+                                    <a href="https://www.coindesk.com/opinion/2024/09/30/can-we-ever-trust-ai-agents" target="_blank">
+                                        Can We Ever Trust AI Agents?
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    An examination of trust mechanisms for autonomous AI agents, exploring attestation, verification, 
+                                    and the role of blockchain in creating accountable AI systems.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> Sep 30, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article 4 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="article-content">
+                                <span class="article-source">Crypto.news</span>
+                                <h3 class="article-title">
+                                    <a href="https://crypto.news/regulatory-compliance-needs-smart-privacy-opinion/" target="_blank">
+                                        Regulatory Compliance Needs Smart Privacy
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Opinion piece on how privacy-enhancing technologies can enable regulatory compliance without 
+                                    sacrificing user privacy or decentralization principles.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article 5 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="article-content">
+                                <span class="article-source">Forbes</span>
+                                <h3 class="article-title">
+                                    <a href="https://www.forbes.com/sites/markostokic/2025/07/23/how-crypto-companies-should-use-ai-and-how-they-shouldnt/" target="_blank">
+                                        How Crypto Companies Should Use AI, And How They Shouldn't
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    AI has a trust problem that crypto could address, but their intersection introduces new challenges. 
+                                    Analysis of how blockchains must preserve their trustless nature.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> Jul 23, 2025</span>
+                                    <span><i class="fa fa-eye"></i> 380 views</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article 6 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="article-content">
+                                <span class="article-source">Forbes</span>
+                                <h3 class="article-title">
+                                    <a href="https://www.forbes.com/sites/markostokic/2025/07/09/how-to-keep-ai-chats-private-even-if-you-whisper-about-crypto-trades/" target="_blank">
+                                        How To Keep AI Chats Private, Even If You Whisper About Crypto Trades
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    No built-in privacy in ChatGPT or Claude? Discover emerging cryptographic fixes and practical 
+                                    tips to protect sensitive AI conversations.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-calendar"></i> Jul 9, 2025</span>
+                                    <span><i class="fa fa-eye"></i> 460 views</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Technical Definitions Section -->
+                    <div class="section-divider">
+                        <h3>📚 Technical Definitions</h3>
+                        <p>Authored technical glossary entries for CoinMarketCap Academy</p>
+                    </div>
+
+                    <div class="article-grid">
+                        
+                        <!-- Definition 1 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.8s">
+                            <div class="article-content">
+                                <span class="article-source">CoinMarketCap</span>
+                                <h3 class="article-title">
+                                    <a href="https://coinmarketcap.com/academy/glossary/decentralized-ai" target="_blank">
+                                        Decentralized AI
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Comprehensive definition of decentralized artificial intelligence: developing and deploying 
+                                    AI systems in a distributed manner with data, computation, and governance spread across networks.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-book"></i> Glossary Entry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Definition 2 -->
+                        <div class="article-card wow fadeInUp" data-wow-delay="0.9s">
+                            <div class="article-content">
+                                <span class="article-source">CoinMarketCap</span>
+                                <h3 class="article-title">
+                                    <a href="https://coinmarketcap.com/academy/glossary/confidential-computing" target="_blank">
+                                        Confidential Computing
+                                    </a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Technical explanation of confidential computing and Trusted Execution Environments (TEEs), 
+                                    covering how they enable privacy-preserving computation in blockchain systems.
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fa fa-book"></i> Glossary Entry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="landing-footer" class="clearfix">
+        <div class="row clearfix">
+            <p id="copyright" class="col-2">© 2025 Marko Stokić. All rights reserved.</p>
+            <ul class="col-2 social-icons">
+                <li>
+                    <a target="_blank" title="LinkedIn" href="http://www.linkedin.com/in/markostokic">
+                        <i class="fa fa-linkedin fa-1x"></i><span>LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Twitter" href="http://www.twitter.com/markowifk">
+                        <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="GitHub" href="https://github.com/stoicma">
+                        <i class="fa fa-github fa-1x"></i><span>GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Mail" href="mailto:marko.stokic@proton.me">
+                        <i class="fa fa-envelope-open-o fa-1x"></i><span>Mail</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/jquery.1.8.3.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/featherlight.min.js"></script>
+<script src="js/featherlight.gallery.min.js"></script>
+<script src="js/jquery.enllax.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.stickyNavbar.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/images-loaded.min.js"></script>
+<script src="js/lightbox.min.js"></script>
+<script src="js/site.js"></script>
+
+</body>
+</html>
+
