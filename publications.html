@@ -221,6 +221,120 @@
                 padding: 30px 20px;
             }
         }
+        
+        /* Personal Blog Section */
+        #personal-blog {
+            background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+            padding: 80px 0;
+            margin-top: 60px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        #personal-blog .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        #personal-blog .section-heading h3 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        #personal-blog .section-title {
+            font-size: 36px;
+            color: #111;
+            margin-bottom: 15px;
+        }
+        
+        #personal-blog .section-subtitle {
+            font-size: 16px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 24px;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .blog-content h3 {
+            font-size: 18px;
+            color: #111;
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .blog-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        @media (max-width: 900px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
     </style>
 
     <!-- Matomo -->
@@ -302,9 +416,6 @@
                             </li>
                             <li>
                                 <a href="/#services">Services</a>
-                            </li>
-                            <li>
-                                <a href="/#blog">Blog</a>
                             </li>
                             <li>
                                 <a href="/speaker">Talks</a>
@@ -536,6 +647,61 @@
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Blog Section -->
+        <section id="personal-blog" class="scrollto clearfix">
+            <div class="row clearfix">
+                <div class="col-1">
+                    
+                    <div class="section-heading">
+                        <h3>PERSONAL</h3>
+                        <h2 class="section-title">Travel & Thoughts</h2>
+                        <p class="section-subtitle">When I'm not deep in blockchain or AI, I'm exploring the world. Here are some stories from the road.</p>
+                    </div>
+
+                    <div class="blog-grid">
+                        
+                        <!-- Blog 1: Mozambique -->
+                        <a href="https://paragraph.xyz/@stoic/travel-mozambique" target="_blank" class="blog-card wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="blog-image">
+                                <img src="images/gallery-images/mozambique-banner-new.png" alt="Mozambique Travel Blog"/>
+                            </div>
+                            <div class="blog-content">
+                                <span class="blog-category">Travel</span>
+                                <h3>Mozambique Adventures</h3>
+                                <p>Exploring the untouched beaches and vibrant culture of East Africa.</p>
+                            </div>
+                        </a>
+
+                        <!-- Blog 2: Bosnia -->
+                        <a href="https://paragraph.xyz/@stoic/travel-bosnia" target="_blank" class="blog-card wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="blog-image">
+                                <img src="images/gallery-images/Travel Blog Banner - BiH.png" alt="Bosnia Travel Blog"/>
+                            </div>
+                            <div class="blog-content">
+                                <span class="blog-category">Travel</span>
+                                <h3>Bosnia & Herzegovina</h3>
+                                <p>A journey through history, mountains, and the warmth of Balkan hospitality.</p>
+                            </div>
+                        </a>
+
+                        <!-- Blog 3: Crypto Jobs -->
+                        <a href="https://paragraph.xyz/@stoic/crypto-jobs" target="_blank" class="blog-card wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="blog-image">
+                                <img src="images/gallery-images/Crypto Blog Banner - Job Search.png" alt="Crypto Job Guide"/>
+                            </div>
+                            <div class="blog-content">
+                                <span class="blog-category">Career</span>
+                                <h3>Landing a Crypto Job</h3>
+                                <p>Lessons learned from job hunting in the web3 space—the good, the bad, and the anon.</p>
+                            </div>
+                        </a>
 
                     </div>
 
