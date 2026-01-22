@@ -4,11 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a professional consulting website for Marko Stokić (markosuniverse.xyz), specializing in blockchain and AI consulting services. The site is a static HTML/CSS/JavaScript website deployed via GitHub Pages.
+This is a professional website for Marko Stokić (markosuniverse.xyz), Head of AI at Oasis Protocol, specializing in blockchain and AI. The site showcases expertise in TEEs, AI agents, and privacy-preserving compute. Marko is open to full-time opportunities in blockchain and AI projects.
 
 **Tech Stack:**
-- Static HTML/CSS/JavaScript (no build process)
-- jQuery 1.8.3 with animation plugins (WOW.js, Enllax for parallax, Featherlight for lightbox, Waypoints, Sticky Navbar)
+- Static HTML/CSS/JavaScript (no build process for main site)
+- Modern motion design: Lenis smooth scroll, GSAP, ScrollTrigger
+- jQuery 1.8.3 with animation plugins (WOW.js, Enllax, Featherlight, Waypoints, Sticky Navbar)
+- Remotion 4.0 for video creation (React-based, separate project)
+- AI chatbot powered by Anthropic Claude API (Vercel serverless function)
 - Namari landing page template v1.1.0 as base
 - Matomo analytics at analytics.markosuniverse.xyz
 
@@ -21,10 +24,13 @@ This is a professional consulting website for Marko Stokić (markosuniverse.xyz)
 - `books/index.html` - Legacy page (may be deprecated)
 
 **Key Directories:**
-- `css/` - Stylesheets (style.css, namari-color.css for theming)
-- `js/` - jQuery and plugins, site.js for custom JavaScript
-- `images/` - All image assets including logo-modern.svg
+- `css/` - Stylesheets (style.css, namari-color.css for theming, motion.css for modern animations, chatbot.css for AI modal)
+- `js/` - jQuery and plugins, site.js for custom JavaScript, motion-init.js for Lenis/GSAP, chatbot.js for AI integration
+- `images/` - All image assets including logo-modern.svg, motion/ subfolder for video assets
+- `videos/` - Rendered video content (marko-highlight.mp4)
 - `fonts/` - Font Awesome icons
+- `api/` - Vercel serverless functions (chat.js for AI chatbot)
+- `remotion-video/` - Remotion project for creating highlight videos (separate Node.js project)
 
 ## Local Development
 
@@ -76,10 +82,19 @@ Color theming is centralized in `css/namari-color.css`. The primary brand color 
 
 ### Animations
 Multiple animation libraries work together:
+- **Lenis** - Butter-smooth scrolling with 0.6s duration (configured in motion-init.js)
+- **GSAP + ScrollTrigger** - Modern scroll-based animations for services section
 - WOW.js - Scroll-triggered animations with `data-wow-delay` attributes
 - Enllax - Parallax effects on banner
 - Waypoints - Section detection for sticky nav
-- jQuery Easing - Smooth scrolling transitions
+- jQuery Easing - Smooth scrolling transitions (legacy)
+
+**Motion Design Files:**
+- `css/motion.css` - Modern animation styles
+- `js/motion-init.js` - Initializes Lenis and GSAP ScrollTrigger
+- `js/gsap.min.js` - GSAP animation library (v3.12.5)
+- `js/ScrollTrigger.min.js` - GSAP ScrollTrigger plugin
+- `js/lenis.min.js` - Lenis smooth scroll library
 
 ### SEO & Metadata
 The site includes comprehensive SEO optimization:
@@ -89,12 +104,66 @@ The site includes comprehensive SEO optimization:
 - Sitemap at `sitemap.xml`
 - Note: HTML includes humorous "biographical anomaly" comments (royal lineage claims) - these are intentional easter eggs and should not be removed
 
+## Remotion Video Project
+
+The site includes a 15-second highlight video created with Remotion (React-based video framework).
+
+**Location:** `remotion-video/`
+
+**Video Structure:**
+1. Opening (0-3s): Name reveal with expertise keywords
+2. Quote Scene 1 (3-6s): CoinDesk quote on speaking photo
+3. Quote Scene 2 (6-9s): Forbes quote on speaking photo
+4. Expertise (9-12s): Grid of 4 key areas (TEEs, AI Agents, Blockchain, Privacy)
+5. Closing (12-15s): Call to action with contact info
+
+**Commands:**
+```bash
+cd remotion-video
+npm start              # Preview video at http://localhost:3001
+npm run build          # Render to out/video.mp4
+```
+
+**Output:** Rendered video is copied to `/videos/marko-highlight.mp4` (2.5 MB)
+
+**Tech Details:**
+- 450 frames at 30fps
+- Spring physics animations
+- Background music with fade in/out
+- Speaking photos with dark gradient overlays
+
+## AI Chatbot
+
+An AI-powered chatbot assists visitors with questions about Marko's expertise and background.
+
+**Implementation:**
+- Frontend: `js/chatbot.js` + `css/chatbot.css`
+- Backend: `api/chat.js` (Vercel serverless function)
+- API: Anthropic Claude 3.5 Sonnet via OpenRouter
+- Modal trigger: Chat button in bottom right corner
+
+**System Prompt:** The chatbot has comprehensive knowledge about:
+- Marko's role (Head of AI at Oasis Protocol)
+- Technical expertise (TEEs, AI agents, privacy-preserving compute)
+- Leadership experience (cross-functional teams, BD/growth management)
+- Work preferences (open to full-time opportunities, not just consulting)
+- Speaking engagements and publications
+- Development skills (self-taught Python/Frontend, Claude Code workflow)
+
+**Important:** When updating chatbot knowledge, edit the `SYSTEM_PROMPT` constant in `api/chat.js`
+
 ## Content Guidelines
+
+**Positioning:**
+- Head of AI at Oasis Protocol
+- Open to full-time opportunities in blockchain and AI projects
+- Technical expertise: TEEs, AI agents, privacy-preserving compute
+- Not positioned as traditional consultant - prefers embedded long-term roles
 
 **Tone:**
 - Professional but authentic
 - Technical expertise balanced with accessibility
-- Services focus: Strategy/GTM, Education, Technical Development, Speaking
+- Focus areas: Strategy/GTM, Education, Technical Development, Speaking
 
 **Services Offered:**
 1. Strategy & Go-to-Market (blockchain/AI ventures)
@@ -150,8 +219,12 @@ The site uses self-hosted Matomo analytics (analytics.markosuniverse.xyz). The t
 
 ## Important Notes
 
-- The site intentionally keeps the old jQuery-based stack for simplicity and zero build process
+- The main site intentionally keeps the old jQuery-based stack for simplicity and zero build process
+- Modern motion design (Lenis, GSAP) is added on top without breaking legacy animations
 - Travel blog content is preserved in publications.html under "Personal" section
 - CV file referenced is `CV_MS_022024.pdf` (may need updating)
 - Logo file is `images/logo-modern.svg` - used in both banner and sticky nav
-- No package.json or dependencies to manage - all libraries are vendored in js/ directory
+- Main site has no package.json - all libraries are vendored in js/ directory
+- Remotion video project (`remotion-video/`) is separate with its own package.json and Node.js dependencies
+- Scroll-up button (`.scrollUp`) automatically hides when chatbot modal is open (CSS rule in chatbot.css)
+- Lenis smooth scroll duration is 0.6s for responsive feel (configured in motion-init.js)
