@@ -1,8 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-// Initialize Anthropic client
+// Initialize Anthropic client with trimmed API key (removes whitespace/newlines)
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY?.trim(),
 });
 
 // Comprehensive system prompt with all info about Marko
