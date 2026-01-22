@@ -37,15 +37,31 @@ Then visit `http://localhost:8080`
 
 ## Deployment
 
-Deployment is automatic via GitHub Pages when pushing to the `main` branch. No build step required.
+**CRITICAL: Always deploy to both GitHub AND Vercel directly.**
+
+The site is hosted on Vercel, not GitHub Pages. GitHub Pages deploys are NOT synchronized with Vercel automatically. You MUST deploy to Vercel after pushing to GitHub.
+
+### Deployment Workflow (ALWAYS follow this order):
 
 ```bash
-git add .
-git commit -m "Your commit message"
+# 1. Commit changes
+git add -A
+git commit -m "Your commit message
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+
+# 2. Push to GitHub
 git push origin main
+
+# 3. Deploy to Vercel production (REQUIRED - do not skip this!)
+npx vercel --prod --yes
 ```
 
-Changes typically appear within 1-2 minutes.
+**Why this matters:**
+- Vercel does NOT auto-deploy from GitHub for this project
+- Pushing only to GitHub will NOT update the live site
+- You must run `npx vercel --prod --yes` after every push
+- Changes appear immediately after Vercel deployment (~10-30 seconds)
 
 ## Code Architecture
 
