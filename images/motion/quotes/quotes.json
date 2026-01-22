@@ -1,0 +1,25 @@
+{
+  "personal": {
+    "motto": "Building Privacy-Preserving Systems",
+    "tagline": "TEEs • Agent Infrastructure • Privacy-Preserving Compute"
+  },
+  "achievements": [
+    "35.6K Views on Forbes",
+    "Head of AI at Oasis Protocol",
+    "ETHDam 2024 Speaker",
+    "International Blockchain Consultant"
+  ],
+  "quotes": [
+    "Think about the price of your privacy. Is it only worth a ghiblified image?",
+    "The future of AI is privacy-preserving",
+    "Blockchain is infrastructure, not ideology",
+    "TEEs enable confidential compute at scale"
+  ],
+  "expertise": [
+    "Trusted Execution Environments",
+    "AI Agent Infrastructure",
+    "Decentralized Systems",
+    "Privacy Technology",
+    "Smart Contracts"
+  ]
+}
