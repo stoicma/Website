@@ -122,9 +122,13 @@
 
     <!--Google Webfonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet'>
 
     <!-- Chatbot CSS -->
     <link rel="stylesheet" href="css/chatbot.css">
+
+    <!-- Motion Design CSS -->
+    <link rel="stylesheet" href="css/motion.css">
 
 </head>
 <body>
@@ -149,6 +153,16 @@
 <div id="wrapper">
 
     <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <!-- Video Background (placeholder - add video files when ready) -->
+        <div class="hero-video-background" style="display: none;">
+            <video autoplay muted loop playsinline>
+                <source src="videos/marko-highlight.webm" type="video/webm">
+                <source src="videos/marko-highlight.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+        <!-- End Video Background -->
+
         <div id="header" class="nav-collapse">
             <div class="row clearfix">
                 <div class="col-1">
@@ -209,10 +223,10 @@
                                 <a href="#services">Services</a>
                             </li>
                             <li>
-                                <a href="/speaker">Talks</a>
+                                <a href="/speaker.html">Talks</a>
                             </li>
                             <li>
-                                <a href="/publications">Publications</a>
+                                <a href="/publications.html">Publications</a>
                             </li>
                         </ul>
                     </nav>
@@ -232,7 +246,7 @@
 
                 <div class="section-heading">
                     <h1>BLOCKCHAIN & AI CONSULTANT</h1>
-                    <h2>Helping web3 and AI companies scale through strategic advisory, 
+                    <h2>Helping web3 and AI companies scale through strategic advisory,
                         technical development, and go-to-market expertise.
                     </h2>
                 </div>
@@ -244,6 +258,13 @@
             </div>
 
         </div><!--End of Row-->
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse-icon"></div>
+            <span>Explore</span>
+        </div>
+        <!-- End Scroll Indicator -->
     </header>
 
     <!--Main Content Area-->
@@ -294,9 +315,7 @@
                 <!--End of Content Section-->
 
             <!--End of Introduction-->
-  
 
-    
         <!--Services Section-->
         <section id="services" class="introduction scrollto">
 
@@ -390,7 +409,7 @@
             <p style="max-width: 600px; margin: 0 auto 30px; color: #666; line-height: 1.7;">
                 Articles on AI, blockchain, and privacy featured in Forbes, CoinDesk, and more—plus travel stories from around the world.
             </p>
-            <a href="/publications" class="button" style="margin-top: 10px;">Read My Publications →</a>
+            <a href="/publications.html" class="button" style="margin-top: 10px;">Read My Publications →</a>
         </section>
         <!--End of Writing CTA-->      
     </main>
@@ -489,6 +508,12 @@
 <script src="js/lightbox.min.js"></script>
 <script src="js/site.js"></script>
 <script src="js/chatbot.js"></script>
+
+<!-- Motion Design Libraries -->
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/lenis.min.js"></script>
+<script src="js/motion-init.js"></script>
 
 
 </body>

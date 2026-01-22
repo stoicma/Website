@@ -199,8 +199,8 @@
 
     // Use textContent for security (prevents XSS)
     // Convert URLs to clickable links safely
-    const elements = linkifyText(text);
-    elements.forEach(function(el) {
+    const textElements = linkifyText(text);
+    textElements.forEach(function(el) {
       contentDiv.appendChild(el);
     });
 
