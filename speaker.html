@@ -63,6 +63,9 @@
     <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="css/chatbot.css">
+
     <style>
         #content {
             padding-top: 120px;
@@ -215,20 +218,6 @@
         }
     </style>
 
-    <!-- Matomo -->
-    <script>
-        var _paq = window._paq = window._paq || [];
-        _paq.push(["setDoNotTrack", true]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-        var u="//analytics.markosuniverse.xyz/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
 </head>
 <body>
 
@@ -634,6 +623,48 @@
 
 </div>
 
+<!-- AI Chatbot -->
+<div id="ai-chatbot-overlay" class="hidden">
+  <div id="ai-chatbot-modal">
+    <div id="chatbot-modal-header">
+      <div>
+        <h3>Ask about Marko</h3>
+        <p class="chatbot-subtitle">AI assistant powered by Claude</p>
+      </div>
+      <button id="chatbot-modal-close" aria-label="Close chat">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <div id="chatbot-modal-messages">
+      <div class="bot-message">
+        <div class="message-content">
+          Hi! I'm an AI assistant here to answer questions about Marko's background, expertise, publications, talks, and consulting services. What would you like to know?
+        </div>
+      </div>
+    </div>
+
+    <div id="chatbot-modal-input-area">
+      <input
+        type="text"
+        id="chatbot-modal-input"
+        placeholder="Ask me anything about Marko..."
+        aria-label="Type your message"
+      />
+      <button id="chatbot-modal-send" aria-label="Send message">
+        <i class="fa fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Widget (shows after modal is dismissed) -->
+<div id="ai-chatbot-widget" class="hidden">
+  <button id="chatbot-widget-button" aria-label="Open chat">
+    <i class="fa fa-comments"></i>
+  </button>
+</div>
+
 <script src="js/jquery.1.8.3.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/featherlight.min.js"></script>
@@ -646,6 +677,7 @@
 <script src="js/images-loaded.min.js"></script>
 <script src="js/lightbox.min.js"></script>
 <script src="js/site.js"></script>
+<script src="js/chatbot.js"></script>
 
 </body>
 </html>

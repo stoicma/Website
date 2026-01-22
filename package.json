@@ -1,0 +1,17 @@
+{
+  "name": "marko-website",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Professional consulting website for Marko Stokić with AI chatbot",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
