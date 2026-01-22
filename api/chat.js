@@ -323,6 +323,12 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Error calling Claude API:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('API Key exists:', !!process.env.ANTHROPIC_API_KEY);
+    console.error('API Key length:', process.env.ANTHROPIC_API_KEY?.length);
+    console.error('API Key first 10 chars:', process.env.ANTHROPIC_API_KEY?.substring(0, 10));
 
     // Handle specific error types
     if (error.status === 401) {
