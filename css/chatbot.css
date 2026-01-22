@@ -373,3 +373,8 @@
 .user-message .message-content a {
   color: #fff;
 }
+
+/* Hide scroll-up button when chatbot is open to prevent overlap */
+body:has(#ai-chatbot-overlay:not(.hidden)) #scrollUp {
+  display: none !important;
+}

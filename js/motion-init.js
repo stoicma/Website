@@ -6,9 +6,9 @@
 (function() {
   'use strict';
 
-  // Initialize Lenis smooth scroll
+  // Initialize Lenis smooth scroll (faster duration for better UX)
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: 0.6,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
     smoothTouch: false // Disable on mobile for better performance
