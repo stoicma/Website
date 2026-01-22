@@ -1,0 +1,21 @@
+{
+  "name": "marko-highlight-video",
+  "version": "1.0.0",
+  "description": "Remotion highlight video for Marko Stokić",
+  "scripts": {
+    "start": "remotion preview",
+    "build": "remotion render src/index.ts MarkoHighlight out/video.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.200",
+    "@remotion/google-fonts": "^4.0.200",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.200"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}
