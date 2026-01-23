@@ -55,35 +55,105 @@
   });
 
   /**
-   * Hero section entrance animations
+   * Hero section entrance animations with blur-to-focus
    */
   function initHeroAnimations() {
-    const heroTitle = document.querySelector('#banner-content h1');
-    const heroSubtitle = document.querySelector('#banner-content h2');
-    const heroButton = document.querySelector('#banner-content .button');
+    // Modern hero (cutting-edge)
+    const heroTitle = document.querySelector('.hero-title');
+    const heroDescription = document.querySelector('.hero-description');
+    const heroCTA = document.querySelector('.hero-cta-group');
+    const heroPhoto = document.querySelector('.hero-photo');
+    const heroLabel = document.querySelector('.hero-label');
 
+    // Timeline for modern hero
     if (heroTitle) {
-      gsap.from(heroTitle, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power3.out',
-        delay: 0.5
-      });
-    }
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    if (heroSubtitle) {
-      gsap.from(heroSubtitle, {
+      tl.from(heroLabel, {
+        opacity: 0,
+        y: 20,
+        filter: 'blur(5px)',
+        duration: 0.8
+      })
+      .from(heroTitle, {
+        opacity: 0,
+        y: 40,
+        filter: 'blur(10px)',
+        duration: 1,
+        clearProps: 'filter'
+      }, '-=0.4')
+      .from(heroDescription, {
         opacity: 0,
         y: 30,
-        duration: 1,
+        filter: 'blur(8px)',
+        duration: 0.9,
+        clearProps: 'filter'
+      }, '-=0.6')
+      .from(heroCTA, {
+        opacity: 0,
+        y: 20,
+        scale: 0.9,
+        duration: 0.8
+      }, '-=0.4');
+
+      if (heroPhoto) {
+        gsap.from(heroPhoto, {
+          opacity: 0,
+          scale: 0.95,
+          rotate: -2,
+          filter: 'blur(20px)',
+          duration: 1.5,
+          ease: 'power3.out',
+          delay: 0.3,
+          clearProps: 'filter'
+        });
+
+        // Parallax effect on hero photo
+        gsap.to(heroPhoto, {
+          scrollTrigger: {
+            trigger: heroPhoto,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+          },
+          y: 100,
+          scale: 1.05,
+          ease: 'none'
+        });
+      }
+    }
+
+    // Legacy hero fallback
+    const legacyTitle = document.querySelector('#banner-content h1');
+    const legacySubtitle = document.querySelector('#banner-content h2');
+    const legacyButton = document.querySelector('#banner-content .button');
+
+    if (legacyTitle && !heroTitle) {
+      gsap.from(legacyTitle, {
+        opacity: 0,
+        y: 50,
+        filter: 'blur(8px)',
+        duration: 1.2,
         ease: 'power3.out',
-        delay: 0.8
+        delay: 0.5,
+        clearProps: 'filter'
       });
     }
 
-    if (heroButton) {
-      gsap.from(heroButton, {
+    if (legacySubtitle && !heroDescription) {
+      gsap.from(legacySubtitle, {
+        opacity: 0,
+        y: 30,
+        filter: 'blur(6px)',
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.8,
+        clearProps: 'filter'
+      });
+    }
+
+    if (legacyButton && !heroCTA) {
+      gsap.from(legacyButton, {
         opacity: 0,
         y: 20,
         scale: 0.95,
@@ -95,12 +165,13 @@
   }
 
   /**
-   * Section reveal on scroll
+   * Section reveal on scroll with blur-to-focus
    */
   function initSectionReveals() {
     const sections = document.querySelectorAll('section');
 
     sections.forEach((section, index) => {
+      // Blur to focus animation
       gsap.from(section, {
         scrollTrigger: {
           trigger: section,
@@ -110,13 +181,30 @@
         },
         opacity: 0,
         y: 60,
-        duration: 1,
+        filter: 'blur(10px)',
+        duration: 1.2,
         ease: 'power3.out'
+      });
+
+      // Parallax background effect
+      const parallaxSpeed = -0.3;
+      gsap.to(section, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: (i, el) => {
+          const height = el.offsetHeight;
+          return height * parallaxSpeed;
+        },
+        ease: 'none'
       });
     });
 
-    // Section headings with clip-path reveal
-    const sectionHeadings = document.querySelectorAll('.section-heading');
+    // Section headings with clip-path reveal + scale
+    const sectionHeadings = document.querySelectorAll('.section-heading, .section-header');
     sectionHeadings.forEach(heading => {
       gsap.from(heading, {
         scrollTrigger: {
@@ -125,6 +213,7 @@
           toggleActions: 'play none none reverse'
         },
         clipPath: 'inset(0 100% 0 0)',
+        scale: 0.95,
         duration: 1.2,
         ease: 'power2.out'
       });
@@ -132,39 +221,84 @@
   }
 
   /**
-   * Service cards staggered animation
+   * Service cards staggered animation with variety
    */
   function initServiceCards() {
-    const iconBlocks = document.querySelectorAll('.icon-block');
+    // Try bento-card first (modern), fallback to icon-block (legacy)
+    const cards = document.querySelectorAll('.bento-card, .icon-block');
 
-    if (iconBlocks.length > 0) {
-      gsap.from(iconBlocks, {
-        scrollTrigger: {
-          trigger: '#services',
-          start: 'top 70%',
-          toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 40,
-        scale: 0.95,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'back.out(1.5)'
+    if (cards.length > 0) {
+      // Staggered entrance with varying animations
+      cards.forEach((card, index) => {
+        // Alternate between different entrance effects
+        const effects = [
+          { y: 60, rotate: -5, filter: 'blur(8px)' },
+          { y: 60, rotate: 5, filter: 'blur(8px)' },
+          { y: 40, scale: 0.9, filter: 'blur(5px)' },
+          { y: 50, x: -20, filter: 'blur(6px)' }
+        ];
+        const effect = effects[index % effects.length];
+
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card.closest('#services, .section-modern'),
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          ...effect,
+          stagger: 0.1,
+          duration: 1,
+          delay: index * 0.1,
+          ease: 'power3.out',
+          clearProps: 'filter' // Clear filter after animation
+        });
+
+        // Floating animation on idle
+        gsap.to(card, {
+          y: -10,
+          duration: 2 + (index * 0.3),
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: index * 0.2
+        });
       });
 
-      // Icon rotation on scroll
-      iconBlocks.forEach(block => {
-        const icon = block.querySelector('.icon');
-        if (icon) {
-          gsap.to(icon, {
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: 1
-            },
-            rotate: 360,
-            ease: 'none'
+      // Icon animations
+      const icons = document.querySelectorAll('.bento-card-icon, .icon-block .icon');
+      icons.forEach((icon, index) => {
+        // Subtle rotation on scroll
+        gsap.to(icon, {
+          scrollTrigger: {
+            trigger: icon.closest('.bento-card, .icon-block'),
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 1
+          },
+          rotate: 15,
+          ease: 'none'
+        });
+
+        // Pulsing scale on hover parent
+        const parent = icon.closest('.bento-card, .icon-block');
+        if (parent) {
+          parent.addEventListener('mouseenter', () => {
+            gsap.to(icon, {
+              scale: 1.15,
+              rotate: 10,
+              duration: 0.4,
+              ease: 'back.out(2)'
+            });
+          });
+
+          parent.addEventListener('mouseleave', () => {
+            gsap.to(icon, {
+              scale: 1,
+              rotate: 0,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
           });
         }
       });
