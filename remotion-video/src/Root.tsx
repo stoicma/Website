@@ -1,10 +1,22 @@
 import { Composition } from 'remotion';
 import { MarkoHighlight } from './MarkoHighlight';
 import { BrandVideo } from './BrandVideo';
+import { HypeVideo } from './HypeVideo';
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* 35-second MTV-style hype video (NEW!) */}
+      <Composition
+        id="HypeVideo"
+        component={HypeVideo}
+        durationInFrames={1050}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{}}
+      />
+
       {/* 90-second cinematic brand video */}
       <Composition
         id="BrandVideo"
