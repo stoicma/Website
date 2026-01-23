@@ -687,9 +687,10 @@ section {
 }
 
 /* ============================================================================
-   DARK MODE SUPPORT (if enabled)
+   DARK MODE SUPPORT (disabled - not fully implemented)
    ========================================================================== */
 
+/* Dark mode temporarily disabled until full implementation
 @media (prefers-color-scheme: dark) {
   .interest-card,
   .icon-block {
@@ -707,3 +708,4 @@ section {
     color: #cbd5e0;
   }
 }
+*/

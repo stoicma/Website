@@ -374,7 +374,20 @@
   color: #fff;
 }
 
-/* Hide scroll-up button when chatbot is open to prevent overlap */
+/* Adjust scroll-up button to not overlap with chat widget */
+#scrollUp {
+  bottom: 15px;
+  right: 110px !important; /* Move left to avoid chat button */
+}
+
+/* Hide scroll-up button when chatbot modal is open */
 body:has(#ai-chatbot-overlay:not(.hidden)) #scrollUp {
   display: none !important;
+}
+
+/* Fallback for browsers without :has() support */
+@supports not (selector(:has(*))) {
+  #ai-chatbot-overlay:not(.hidden) ~ * #scrollUp {
+    display: none !important;
+  }
 }
