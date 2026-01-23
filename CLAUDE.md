@@ -83,18 +83,36 @@ Color theming is centralized in `css/namari-color.css`. The primary brand color 
 ### Animations
 Multiple animation libraries work together:
 - **Lenis** - Butter-smooth scrolling with 0.6s duration (configured in motion-init.js)
-- **GSAP + ScrollTrigger** - Modern scroll-based animations for services section
+- **GSAP + ScrollTrigger** - Modern scroll-based animations for services section with blur-to-focus effects, parallax, and stagger
+- **Motion One** - Lightweight spring-based micro-interactions (button press, card tilt, link underlines)
 - WOW.js - Scroll-triggered animations with `data-wow-delay` attributes
 - Enllax - Parallax effects on banner
 - Waypoints - Section detection for sticky nav
 - jQuery Easing - Smooth scrolling transitions (legacy)
 
 **Motion Design Files:**
-- `css/motion.css` - Modern animation styles
-- `js/motion-init.js` - Initializes Lenis and GSAP ScrollTrigger
+- `css/motion.css` - Modern animation styles, glassmorphism, neon effects, depth utilities
+- `css/cutting-edge.css` - Bento grid layout with glass cards
+- `js/motion-init.js` - Initializes Lenis, GSAP ScrollTrigger, and anchor scrolling
+- `js/micro-interactions.js` - Motion One spring-based interactions
 - `js/gsap.min.js` - GSAP animation library (v3.12.5)
 - `js/ScrollTrigger.min.js` - GSAP ScrollTrigger plugin
 - `js/lenis.min.js` - Lenis smooth scroll library
+
+**Key Animation Features:**
+- Glassmorphism effects on navigation and service cards (backdrop-filter with fallbacks)
+- Neon glow accents on CTAs and interactive elements
+- Blur-to-focus entrance animations
+- Parallax scrolling effects
+- Card floating animations
+- Spring physics for natural button feedback
+- 3D card tilt on hover
+
+**Scroll Animation Patterns:**
+- Service cards use `once: true` in ScrollTrigger to prevent disappearing on scroll back
+- Same-page anchor links (#services, #about) use Lenis smooth scrolling with -100px offset for sticky nav
+- Cards animate individually on their own trigger, not the parent section
+- Use `immediateRender: false` to prevent flashing if elements are already in view
 
 ### SEO & Metadata
 The site includes comprehensive SEO optimization:
@@ -132,6 +150,29 @@ npm run build          # Render to out/video.mp4
 - Background music with fade in/out
 - Speaking photos with dark gradient overlays
 
+## Custom Cursor Effects
+
+The site features a custom cursor implementation for desktop users, adding visual flair and interactivity.
+
+**Implementation:**
+- `css/cursor-effects.css` - Cursor styling (dot, outline, glow, trail particles)
+- `js/cursor-effects.js` - JavaScript animation loop and hover state management
+
+**Features:**
+- Blue cursor dot with smooth follow (25% lag)
+- Outline ring with slower follow (15% lag)
+- Glow effect for depth (8% lag)
+- Trail particles that fade out
+- Hover states on interactive elements (buttons, links, cards)
+- Automatically disabled on touch devices
+- Respects `prefers-reduced-motion` accessibility setting
+
+**Technical Details:**
+- Uses `requestAnimationFrame` for smooth 60fps animation
+- `mix-blend-mode: difference` for visibility on all backgrounds
+- MutationObserver to handle dynamically added elements
+- Throttled trail particle creation (30ms intervals)
+
 ## AI Chatbot
 
 An AI-powered chatbot assists visitors with questions about Marko's expertise and background.
@@ -140,7 +181,15 @@ An AI-powered chatbot assists visitors with questions about Marko's expertise an
 - Frontend: `js/chatbot.js` + `css/chatbot.css`
 - Backend: `api/chat.js` (Vercel serverless function)
 - API: Anthropic Claude 3.5 Sonnet via OpenRouter
-- Modal trigger: Chat button in bottom right corner
+- Modal trigger: Chat button in bottom right corner (warm bronze accent)
+
+**Design Style:**
+- Inspired by Claude.ai's clean, minimal aesthetic
+- Warm neutral color scheme (#f9f9f8 background, #e8e7e5 user messages)
+- Bronze accent color (#cd7f32) for branding
+- Inter font family throughout
+- Subtle borders and shadows for depth
+- White message bubbles for bot responses
 
 **System Prompt:** The chatbot has comprehensive knowledge about:
 - Marko's role (Head of AI at Oasis Protocol)
