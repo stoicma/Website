@@ -52,7 +52,32 @@
 
     // Enhanced hover effects
     initHoverEffects();
+
+    // Fix same-page anchor link scrolling
+    initAnchorScrolling();
   });
+
+  /**
+   * Handle same-page anchor link clicks for smooth scrolling
+   */
+  function initAnchorScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return; // Skip empty anchors
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          lenis.scrollTo(targetElement, {
+            offset: -100, // Account for sticky nav
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        }
+      });
+    });
+  }
 
   /**
    * Hero section entrance animations with blur-to-focus
@@ -241,17 +266,18 @@
 
         gsap.from(card, {
           scrollTrigger: {
-            trigger: card.closest('#services, .section-modern'),
-            start: 'top 75%',
-            toggleActions: 'play none none reverse'
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true // Animation plays once and cards stay visible
           },
           opacity: 0,
           ...effect,
-          stagger: 0.1,
           duration: 1,
           delay: index * 0.1,
           ease: 'power3.out',
-          clearProps: 'filter' // Clear filter after animation
+          clearProps: 'filter', // Clear filter after animation
+          immediateRender: false // Don't apply initial state if already in view
         });
 
         // Floating animation on idle
