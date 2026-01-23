@@ -4,7 +4,8 @@
   "description": "Remotion highlight video for Marko Stokić",
   "scripts": {
     "start": "remotion preview",
-    "build": "remotion render src/index.ts MarkoHighlight out/video.mp4",
+    "build": "remotion render src/index.ts BrandVideo out/brand-video.mp4",
+    "build:highlight": "remotion render src/index.ts MarkoHighlight out/video.mp4",
     "upgrade": "remotion upgrade"
   },
   "dependencies": {
