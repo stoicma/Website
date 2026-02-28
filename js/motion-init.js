@@ -282,7 +282,7 @@
 
         // Floating animation on idle
         gsap.to(card, {
-          y: -10,
+          y: -4,
           duration: 2 + (index * 0.3),
           repeat: -1,
           yoyo: true,

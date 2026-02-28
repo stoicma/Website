@@ -19,7 +19,7 @@
     // Initialize all micro-interactions
     initButtonInteractions();
     initLinkInteractions();
-    initCardTiltEffect();
+
     initInputFocusEffects();
     initSocialIconHovers();
     initScrollIndicator();
@@ -109,51 +109,6 @@
     });
   }
 
-  /**
-   * 3D card tilt effect on mouse move
-   */
-  function initCardTiltEffect() {
-    const cards = document.querySelectorAll('.bento-card, .interest-card, .icon-block');
-
-    cards.forEach(card => {
-      let bounds = card.getBoundingClientRect();
-
-      // Update bounds on window resize
-      window.addEventListener('resize', () => {
-        bounds = card.getBoundingClientRect();
-      });
-
-      card.addEventListener('mouseenter', () => {
-        card.style.transformStyle = 'preserve-3d';
-      });
-
-      card.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX - bounds.left;
-        const mouseY = e.clientY - bounds.top;
-
-        const xRotation = ((mouseY / bounds.height) - 0.5) * -10; // -5 to 5 degrees
-        const yRotation = ((mouseX / bounds.width) - 0.5) * 10;   // -5 to 5 degrees
-
-        Motion.animate(
-          card,
-          {
-            transform: `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale3d(1.02, 1.02, 1.02)`
-          },
-          { duration: 0.15, easing: 'ease-out' }
-        );
-      });
-
-      card.addEventListener('mouseleave', () => {
-        Motion.animate(
-          card,
-          {
-            transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
-          },
-          { duration: 0.4, easing: Motion.spring({ stiffness: 200, damping: 20 }) }
-        );
-      });
-    });
-  }
 
   /**
    * Input focus animations
