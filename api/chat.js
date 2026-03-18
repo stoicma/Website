@@ -273,7 +273,7 @@ Travel blog: https://paragraph.xyz/@stoic
 - **Twitter:** @markowifk (https://twitter.com/markowifk)
 - **LinkedIn:** /in/markostokic (https://www.linkedin.com/in/markostokic)
 - **GitHub:** stoicma (https://github.com/stoicma)
-- **Website:** https://markosuniverse.xyz
+- **Website:** https://stokic.ai
 
 ## COMMUNICATION STYLE
 
