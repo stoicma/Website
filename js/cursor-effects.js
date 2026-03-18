@@ -1,7 +1,7 @@
 /**
- * Custom Cursor Effects
- * Creates themed mouse trail and interactive cursor
- * Trail themes: binary (0s and 1s), chess pieces, ethereum diamonds
+ * Custom Cursor Trail Effects
+ * Themed particle trails: binary, chess, ethereum
+ * Native cursor stays visible. Trails are purely decorative.
  */
 
 (function() {
@@ -11,109 +11,118 @@
   if (isTouchDevice) return;
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
 
-  var cursorDot, cursorOutline, cursorGlow;
-  var mouseX = 0, mouseY = 0;
-  var dotX = 0, dotY = 0;
-  var outlineX = 0, outlineY = 0;
-  var glowX = 0, glowY = 0;
   var trailTimer;
+
+  // Build an Ethereum diamond SVG element (the actual logo shape)
+  function createEthSVG(color) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 16 26');
+    svg.setAttribute('width', '14');
+    svg.setAttribute('height', '22');
+
+    var paths = [
+      { d: 'M8 0L0 13.25L8 10.1L16 13.25L8 0Z', opacity: '0.8' },
+      { d: 'M8 10.1L0 13.25L8 17.65L16 13.25L8 10.1Z', opacity: '0.6' },
+      { d: 'M0 14.75L8 26L16 14.75L8 19.15L0 14.75Z', opacity: '0.8' }
+    ];
+
+    paths.forEach(function(p) {
+      var path = document.createElementNS(ns, 'path');
+      path.setAttribute('d', p.d);
+      path.setAttribute('fill', color);
+      path.setAttribute('opacity', p.opacity);
+      svg.appendChild(path);
+    });
+
+    return svg;
+  }
+
+  // Build a small ETH icon for the picker button
+  function createEthIcon() {
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 16 26');
+    svg.setAttribute('width', '12');
+    svg.setAttribute('height', '19');
+
+    var paths = [
+      { d: 'M8 0L0 13.25L8 10.1L16 13.25L8 0Z', opacity: '0.8' },
+      { d: 'M8 10.1L0 13.25L8 17.65L16 13.25L8 10.1Z', opacity: '0.6' },
+      { d: 'M0 14.75L8 26L16 14.75L8 19.15L0 14.75Z', opacity: '0.8' }
+    ];
+
+    paths.forEach(function(p) {
+      var path = document.createElementNS(ns, 'path');
+      path.setAttribute('d', p.d);
+      path.setAttribute('fill', 'currentColor');
+      path.setAttribute('opacity', p.opacity);
+      svg.appendChild(path);
+    });
+
+    return svg;
+  }
 
   // Trail themes
   var themes = {
     binary: {
+      type: 'text',
       chars: ['0', '1'],
       label: '01',
-      color: '#2563eb'
+      color: '#2563eb',
+      size: 'normal'
     },
     chess: {
+      type: 'text',
       chars: ['\u2659', '\u2658', '\u2657', '\u2656', '\u2655', '\u2654'],
       label: '\u265F',
-      color: '#2563eb'
+      color: '#2563eb',
+      size: 'large'
     },
     ethereum: {
-      chars: ['\u25C6', '\u2B25', '\u25C8'],
-      label: '\u25C6',
-      color: '#2563eb'
+      type: 'svg',
+      colors: ['#627EEA', '#8C9EEF', '#4A6CF7']
     }
   };
 
   var themeKeys = ['binary', 'chess', 'ethereum'];
   var currentTheme = localStorage.getItem('cursorTheme') || 'binary';
 
-  function initCursor() {
-    cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
-
-    cursorOutline = document.createElement('div');
-    cursorOutline.className = 'cursor-outline';
-    document.body.appendChild(cursorOutline);
-
-    if (!prefersReducedMotion) {
-      cursorGlow = document.createElement('div');
-      cursorGlow.className = 'cursor-glow';
-      document.body.appendChild(cursorGlow);
-    }
-
-    document.addEventListener('mousemove', handleMouseMove);
-    initHoverStates();
-    if (!prefersReducedMotion) initThemePicker();
-    animate();
-  }
-
-  function handleMouseMove(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    if (!prefersReducedMotion) {
-      createTrailParticle(mouseX, mouseY);
-    }
-  }
-
   function createTrailParticle(x, y) {
     if (trailTimer) return;
 
     trailTimer = setTimeout(function() {
       var theme = themes[currentTheme];
-      var chars = theme.chars;
-      var char = chars[Math.floor(Math.random() * chars.length)];
 
-      var trail = document.createElement('span');
-      trail.className = 'mouse-trail';
-      trail.textContent = char;
-      trail.style.left = x + 'px';
-      trail.style.top = y + 'px';
-      trail.style.color = theme.color;
-      document.body.appendChild(trail);
+      if (theme.type === 'svg') {
+        var colors = theme.colors;
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var wrapper = document.createElement('div');
+        wrapper.className = 'mouse-trail-svg';
+        wrapper.appendChild(createEthSVG(color));
+        wrapper.style.left = x + 'px';
+        wrapper.style.top = y + 'px';
+        document.body.appendChild(wrapper);
 
-      setTimeout(function() {
-        trail.remove();
-      }, 1000);
+        setTimeout(function() { wrapper.remove(); }, 1000);
+      } else {
+        var chars = theme.chars;
+        var char = chars[Math.floor(Math.random() * chars.length)];
+        var trail = document.createElement('span');
+        trail.className = 'mouse-trail' + (theme.size === 'large' ? ' mouse-trail--large' : '');
+        trail.textContent = char;
+        trail.style.left = x + 'px';
+        trail.style.top = y + 'px';
+        trail.style.color = theme.color;
+        document.body.appendChild(trail);
+
+        setTimeout(function() { trail.remove(); }, 1000);
+      }
 
       trailTimer = null;
     }, 40);
-  }
-
-  function animate() {
-    dotX += (mouseX - dotX) * 0.25;
-    dotY += (mouseY - dotY) * 0.25;
-    outlineX += (mouseX - outlineX) * 0.15;
-    outlineY += (mouseY - outlineY) * 0.15;
-
-    if (cursorDot) {
-      cursorDot.style.transform = 'translate(' + (dotX - 4) + 'px, ' + (dotY - 4) + 'px)';
-    }
-    if (cursorOutline) {
-      cursorOutline.style.transform = 'translate(' + (outlineX - 20) + 'px, ' + (outlineY - 20) + 'px)';
-    }
-    if (cursorGlow && !prefersReducedMotion) {
-      glowX += (mouseX - glowX) * 0.08;
-      glowY += (mouseY - glowY) * 0.08;
-      cursorGlow.style.transform = 'translate(' + (glowX - 100) + 'px, ' + (glowY - 100) + 'px)';
-    }
-
-    requestAnimationFrame(animate);
   }
 
   function initThemePicker() {
@@ -124,8 +133,14 @@
       var btn = document.createElement('button');
       btn.className = 'cursor-theme-btn';
       btn.setAttribute('data-theme', key);
-      btn.textContent = themes[key].label;
       btn.title = key.charAt(0).toUpperCase() + key.slice(1) + ' trail';
+
+      if (key === 'ethereum') {
+        btn.appendChild(createEthIcon());
+      } else {
+        btn.textContent = themes[key].label;
+      }
+
       if (key === currentTheme) btn.classList.add('active');
 
       btn.addEventListener('click', function(e) {
@@ -145,46 +160,17 @@
     document.body.appendChild(picker);
   }
 
-  function initHoverStates() {
-    var interactiveSelectors = 'a, button, input, textarea, select, [role="button"], .clickable, .bento-card, .btn-primary, .btn-secondary';
-    var interactiveElements = document.querySelectorAll(interactiveSelectors);
-
-    interactiveElements.forEach(function(element) {
-      element.addEventListener('mouseenter', function() {
-        if (cursorDot) cursorDot.classList.add('cursor-hover');
-        if (cursorOutline) cursorOutline.classList.add('cursor-hover');
-      });
-
-      element.addEventListener('mouseleave', function() {
-        if (cursorDot) cursorDot.classList.remove('cursor-hover');
-        if (cursorOutline) cursorOutline.classList.remove('cursor-hover');
-      });
+  function init() {
+    document.addEventListener('mousemove', function(e) {
+      createTrailParticle(e.clientX, e.clientY);
     });
-
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1 && node.matches && node.matches(interactiveSelectors)) {
-            node.addEventListener('mouseenter', function() {
-              if (cursorDot) cursorDot.classList.add('cursor-hover');
-              if (cursorOutline) cursorOutline.classList.add('cursor-hover');
-            });
-            node.addEventListener('mouseleave', function() {
-              if (cursorDot) cursorDot.classList.remove('cursor-hover');
-              if (cursorOutline) cursorOutline.classList.remove('cursor-hover');
-            });
-          }
-        });
-      });
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
+    initThemePicker();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCursor);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initCursor();
+    init();
   }
 
 })();
