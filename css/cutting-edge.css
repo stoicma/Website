@@ -17,6 +17,7 @@
   --color-text-tertiary: #a1a1aa;
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
+  --color-accent-warm: #d97706;
 
   /* Spacing Scale (8px base) */
   --space-1: 0.25rem;  /* 4px */
@@ -29,9 +30,9 @@
   --space-16: 4rem;    /* 64px */
   --space-24: 6rem;    /* 96px */
 
-  /* Typography (Linear-style hierarchy) */
+  /* Typography */
   --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
-  --font-display: 'Inter', system-ui, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
 
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.875rem;     /* 14px */
@@ -120,11 +121,17 @@ body {
   letter-spacing: -0.01em;
 }
 
+.hero-label svg {
+  color: var(--color-accent-warm);
+  fill: var(--color-accent-warm);
+}
+
 .hero-title {
+  font-family: var(--font-display);
   font-size: var(--text-6xl);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-6);
   text-wrap: balance;
 }
@@ -155,7 +162,7 @@ body {
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-4) var(--space-6);
-  background: var(--color-accent);
+  background: var(--color-accent-warm);
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -163,17 +170,16 @@ body {
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: all var(--transition);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25),
-              0 0 20px rgba(37, 99, 235, 0.15);
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25),
+              0 0 20px rgba(217, 119, 6, 0.15);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
+  background: #b45309;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35),
-              0 0 30px rgba(37, 99, 235, 0.25),
-              0 0 45px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.35),
+              0 0 30px rgba(217, 119, 6, 0.2);
 }
 
 .btn-secondary {
@@ -242,17 +248,19 @@ body {
 .section-label {
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-accent-warm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-3);
 }
 
 .section-title {
+  font-family: var(--font-display);
   font-size: var(--text-5xl);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   margin-bottom: var(--space-4);
+  text-wrap: balance;
 }
 
 .section-description {
@@ -310,10 +318,30 @@ body {
   color: white;
 }
 
+.bento-card-header {
+  margin: calc(var(--space-8) * -1) calc(var(--space-8) * -1) var(--space-6) calc(var(--space-8) * -1);
+  height: 200px;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.bento-card-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover .bento-card-header img {
+  transform: scale(1.05);
+}
+
 .bento-card-title {
+  font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: var(--space-3);
+  text-wrap: balance;
 }
 
 .bento-card-description {
@@ -752,7 +780,7 @@ body {
 .explore-card-title {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-text-primary);
   margin-bottom: var(--space-3);
   letter-spacing: -0.01em;
@@ -778,4 +806,122 @@ body {
 
 .explore-card:hover .explore-card-link {
   gap: 10px;
+}
+
+/* ===========================
+   NOISE GRAIN TEXTURE
+   =========================== */
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9996;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    display: none;
+  }
+}
+
+/* ===========================
+   HERO GRADIENT MESH
+   =========================== */
+
+#banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, #dbeafe 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, #bfdbfe 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 60% 80%, #fef3c7 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 40% 60%, #f0f9ff 0%, transparent 70%);
+  animation: meshShift 25s ease-in-out infinite alternate;
+}
+
+@keyframes meshShift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 50%;
+  }
+  33% {
+    background-position: 30% 20%, 70% 40%, 80% 60%, 20% 80%;
+  }
+  66% {
+    background-position: 60% 40%, 40% 60%, 20% 30%, 80% 20%;
+  }
+  100% {
+    background-position: 100% 60%, 0% 80%, 60% 0%, 50% 70%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #banner::before {
+    animation: none;
+  }
+}
+
+/* ===========================
+   ACTIVE STATES
+   =========================== */
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.bento-card:active {
+  transform: scale(0.99);
+}
+
+.explore-card:active {
+  transform: scale(0.98);
+}
+
+/* ===========================
+   ABOUT PHOTO TREATMENT
+   =========================== */
+
+#about .col-2:last-child {
+  position: relative;
+}
+
+#about .col-2:last-child img {
+  max-height: 600px;
+  width: auto;
+  transform: rotate(2deg);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
+}
+
+#about .col-2:last-child img:hover {
+  transform: rotate(0deg);
+}
+
+#about .col-2:last-child::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(217, 119, 6, 0.06));
+  border-radius: var(--radius-lg);
+  z-index: 0;
 }

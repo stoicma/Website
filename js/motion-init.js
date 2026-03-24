@@ -97,39 +97,39 @@
       tl.from(heroLabel, {
         opacity: 0,
         y: 20,
-        filter: 'blur(5px)',
+        filter: 'blur(4px)',
         duration: 0.8
       })
       .from(heroTitle, {
         opacity: 0,
-        y: 40,
-        filter: 'blur(10px)',
+        y: 30,
+        filter: 'blur(6px)',
         duration: 1,
         clearProps: 'filter'
-      }, '-=0.4')
+      }, 0.3)
       .from(heroDescription, {
         opacity: 0,
-        y: 30,
-        filter: 'blur(8px)',
+        y: 20,
+        filter: 'blur(4px)',
         duration: 0.9,
         clearProps: 'filter'
-      }, '-=0.6')
+      }, 0.8)
       .from(heroCTA, {
         opacity: 0,
-        y: 20,
-        scale: 0.9,
+        y: 15,
+        scale: 0.95,
         duration: 0.8
-      }, '-=0.4');
+      }, 1.2);
 
       if (heroPhoto) {
         gsap.from(heroPhoto, {
           opacity: 0,
           scale: 0.95,
           rotate: -2,
-          filter: 'blur(20px)',
+          filter: 'blur(8px)',
           duration: 1.5,
           ease: 'power3.out',
-          delay: 0.3,
+          delay: 0.5,
           clearProps: 'filter'
         });
 
