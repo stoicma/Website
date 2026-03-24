@@ -1,27 +1,21 @@
-# Marko Stokić - Blockchain & AI Consultant
+# stokic.ai
 
-Professional consulting website for blockchain and AI services.
+Personal website for Marko Stokic. Head of AI at Oasis Protocol, Forbes contributor, and conference speaker.
 
-## About
+## Live
 
-This is the source code for [markosuniverse.xyz](https://markosuniverse.xyz), the professional website of Marko Stokić, a consultant specializing in blockchain and AI technologies.
-
-## Services
-
-- Strategy & Go-to-Market
-- Education & Training
-- Technical Development
-- Speaking & Advisory
+[stokic.ai](https://stokic.ai)
 
 ## Tech Stack
 
-- Static HTML/CSS/JavaScript
-- jQuery for animations and interactions
-- Deployed via GitHub Pages
+- Static HTML/CSS/JavaScript (no build process)
+- GSAP + ScrollTrigger for scroll animations
+- Lenis for smooth scrolling
+- Remotion for programmatic video (separate project in `remotion-video/`)
+- AI chatbot powered by Claude (Vercel serverless function)
+- Deployed on Vercel
 
 ## Local Development
-
-To run locally:
 
 ```bash
 python3 -m http.server 8080
@@ -31,7 +25,7 @@ Then visit `http://localhost:8080`
 
 ## Contact
 
-- Website: [markosuniverse.xyz](https://markosuniverse.xyz)
 - Email: marko.stokic@proton.me
-- LinkedIn: [linkedin.com/in/markostokic](https://www.linkedin.com/in/markostokic)
 - Twitter: [@markowifk](https://twitter.com/markowifk)
+- LinkedIn: [linkedin.com/in/markostokic](https://www.linkedin.com/in/markostokic)
+- GitHub: [stoicma](https://github.com/stoicma)
