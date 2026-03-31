@@ -97,22 +97,17 @@
       tl.from(heroLabel, {
         opacity: 0,
         y: 20,
-        filter: 'blur(4px)',
         duration: 0.8
       })
       .from(heroTitle, {
         opacity: 0,
         y: 30,
-        filter: 'blur(6px)',
-        duration: 1,
-        clearProps: 'filter'
+        duration: 1
       }, 0.3)
       .from(heroDescription, {
         opacity: 0,
         y: 20,
-        filter: 'blur(4px)',
-        duration: 0.9,
-        clearProps: 'filter'
+        duration: 0.9
       }, 0.8)
       .from(heroCTA, {
         opacity: 0,
@@ -126,11 +121,9 @@
           opacity: 0,
           scale: 0.95,
           rotate: -2,
-          filter: 'blur(8px)',
           duration: 1.5,
           ease: 'power3.out',
-          delay: 0.5,
-          clearProps: 'filter'
+          delay: 0.5
         });
 
         // Parallax effect on hero photo
@@ -206,7 +199,6 @@
         },
         opacity: 0,
         y: 60,
-        filter: 'blur(10px)',
         duration: 1.2,
         ease: 'power3.out'
       });
@@ -257,10 +249,10 @@
       cards.forEach((card, index) => {
         // Alternate between different entrance effects
         const effects = [
-          { y: 60, rotate: -5, filter: 'blur(8px)' },
-          { y: 60, rotate: 5, filter: 'blur(8px)' },
-          { y: 40, scale: 0.9, filter: 'blur(5px)' },
-          { y: 50, x: -20, filter: 'blur(6px)' }
+          { y: 60, rotate: -5 },
+          { y: 60, rotate: 5 },
+          { y: 40, scale: 0.9 },
+          { y: 50, x: -20 }
         ];
         const effect = effects[index % effects.length];
 
@@ -276,7 +268,6 @@
           duration: 1,
           delay: index * 0.1,
           ease: 'power3.out',
-          clearProps: 'filter', // Clear filter after animation
           immediateRender: false // Don't apply initial state if already in view
         });
 

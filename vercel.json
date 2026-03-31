@@ -1,14 +1,14 @@
 {
-  "buildCommand": null,
+  "buildCommand": "cd beliefs-app && npm ci && npm run build",
   "outputDirectory": ".",
-  "routes": [
-    {
-      "src": "/speaker",
-      "dest": "/speaker.html"
-    },
-    {
-      "src": "/publications",
-      "dest": "/publications.html"
-    }
+  "rewrites": [
+    { "source": "/speaker", "destination": "/speaker.html" },
+    { "source": "/publications", "destination": "/publications.html" },
+    { "source": "/beliefs", "destination": "/beliefs/index.html" },
+    { "source": "/beliefs/blog", "destination": "/beliefs/index.html" },
+    { "source": "/beliefs/ai-divide", "destination": "/beliefs/index.html" },
+    { "source": "/beliefs/new-disorder", "destination": "/beliefs/index.html" },
+    { "source": "/beliefs/europe", "destination": "/beliefs/index.html" },
+    { "source": "/beliefs/us-decline", "destination": "/beliefs/index.html" }
   ]
 }
