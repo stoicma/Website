@@ -107,7 +107,7 @@ export default function DashboardPage() {
 
         {/* Footer */}
         <footer className="dashboard-footer">
-          <a href="https://stokic.ai">stokic.ai</a> &middot; Marko Stokic &middot; March 2026
+          <a href="https://stokic.ai">stokic.ai</a> &middot; Marko Stokić &middot; March 2026
         </footer>
       </div>
     </div>

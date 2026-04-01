@@ -12,7 +12,7 @@ const sections = [
   { id: 'connections', label: 'How They Connect' },
   { id: 'mind-changed', label: 'What Changed' },
   { id: 'meta-thesis', label: 'The Meta-Thesis' },
-  { id: 'your-turn', label: 'Your Turn' },
+  { id: 'your-turn', label: 'Try It Yourself' },
 ];
 
 export default function BlogPage() {
@@ -77,7 +77,7 @@ export default function BlogPage() {
         <main className="blog-content">
           {/* Header */}
           <header className="blog-header" id="intro">
-            <div className="blog-meta">Marko Stokic / March 2026</div>
+            <div className="blog-meta">Marko Stokić / March 2026</div>
             <h1 className="blog-title">How I See the World</h1>
             <p className="blog-intro">
               Everyone has a worldview. A set of assumptions about where things
@@ -86,10 +86,10 @@ export default function BlogPage() {
               and never track whether reality validates it or proves them wrong.
             </p>
             <p className="blog-intro" style={{ marginTop: 16 }}>
-              I decided to do exactly that. Over the course of several months, I
-              articulated my beliefs, challenged each one with counter-arguments,
-              looked for data that would prove me wrong, and mapped out the cascading
-              effects if I am right. This is that document.
+              I decided to do exactly that. Over a series of deep sessions with
+              Claude, I articulated my beliefs, challenged each one with
+              counter-arguments, looked for data that would prove me wrong, and
+              mapped out the cascading effects if I am right. This is that document.
             </p>
             <p className="blog-intro" style={{ marginTop: 16 }}>
               Four beliefs. Twenty-five cascading effects. One connecting thread.
@@ -422,21 +422,91 @@ export default function BlogPage() {
           </section>
 
           {/* Your Turn */}
-          <section className="blog-cta" id="your-turn">
-            <h2 className="blog-cta-title">Your beliefs are already there</h2>
-            <p className="blog-cta-text">
-              You already have a worldview. A set of assumptions about AI, about
-              institutions, about where your country is heading. You just might
-              not have written it down yet. I'd encourage you to try.
+          <section className="blog-section" id="your-turn">
+            <h2 className="blog-section-title">How to do this yourself</h2>
+            <p className="blog-text">
+              You just need honesty about what you actually believe, and
+              willingness to be wrong.
             </p>
-            <Link to="/" className="blog-cta-link">
-              Explore the dashboard &rarr;
-            </Link>
+            <p className="blog-text">
+              I've made it easy. Here's a system prompt you can paste directly
+              into your LLM of choice. It will walk you through the entire
+              process: surfacing your beliefs, structuring them, finding the
+              data, mapping the effects, and stress-testing against reality.
+            </p>
+            <pre style={{
+              background: '#1a1a1a',
+              color: '#e5e5e5',
+              padding: '24px',
+              borderRadius: '8px',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              overflowX: 'auto',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+              margin: '32px 0',
+            }}>{`You are a personal belief system architect. Your job is to help me
+discover, structure, and stress-test my worldview through conversation.
+
+IMPORTANT: This is an interview, not a lecture. One question at a time.
+Never dump multiple questions or phases in a single message. Wait for my
+answer before moving on. Keep it conversational. Short responses. No
+bullet-point walls.
+
+Start by asking me a single opening question about what I believe is
+changing in the world. Then follow the phases below naturally, one step
+at a time.
+
+Phase 1 -- Surface my beliefs (one belief at a time)
+Help me articulate 3-5 core beliefs about how the world is changing.
+For each belief before moving to the next:
+- Ask what I've actually done because I believe this. If the answer is
+  nothing, push me on whether it's a real belief or a dinner table opinion.
+- Ask where the belief comes from. First-hand experience? Data? Pattern
+  recognition? Or something I absorbed from other people?
+- Play devil's advocate. Give me the strongest counter-argument and let
+  me respond.
+Only move to the next belief when we've gone deep enough on the current
+one.
+
+Phase 2 -- Add data (one belief at a time)
+Go back through each belief. Find real data that supports or contradicts
+it. Specific numbers, studies, trends. Don't cherry-pick. If the data
+says I'm wrong, tell me directly. When I change my mind, note it. These
+moments are the most valuable part of the process.
+
+Phase 3 -- Map the effects (one belief at a time)
+For each belief, help me define 4-6 cascading effects. What happens if
+this belief is true? Think at multiple levels: markets, companies,
+governments, and everyday citizens. Look for connections between beliefs.
+
+Phase 4 -- Find opportunities
+For each effect: who benefits, who loses, and is that investable? Not
+just stocks. Career moves, where to live, skills to build, things to
+avoid.
+
+Phase 5 -- Stress-test (ongoing)
+When I bring a real-world event, score it against each belief: SUPPORTS,
+CONTRADICTS, ACCELERATES, or NEUTRAL. Flag gaps where nothing in my
+system explains it.
+
+Rules:
+- ONE question per message. Wait for my answer.
+- Challenge me. Don't agree to be polite.
+- Use real data with sources when relevant.
+- When I change my mind, mark it explicitly.
+- No corporate speak. Keep it direct and human.
+- The goal is a living system, not a finished document.`}</pre>
+            <div style={{ textAlign: 'center', marginTop: 40 }}>
+              <Link to="/" className="blog-cta-link">
+                Explore the dashboard &rarr;
+              </Link>
+            </div>
           </section>
 
           {/* Footer */}
           <footer className="blog-footer">
-            <a href="https://stokic.ai">stokic.ai</a> &middot; Marko Stokic &middot; March 2026
+            <a href="https://stokic.ai">stokic.ai</a> &middot; Marko Stokić &middot; March 2026
           </footer>
         </main>
       </div>
