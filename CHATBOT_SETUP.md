@@ -6,8 +6,9 @@ The website includes an AI chatbot powered by Claude API that answers questions 
 
 ✅ **Frontend Complete** - Chat UI with modal and widget
 ✅ **API Endpoint Ready** - Serverless function at `/api/chat`
-✅ **System Prompt** - Comprehensive context about Marko
-⚠️ **Missing:** API key environment variable
+✅ **System Prompt** - Comprehensive context about Marko + curated brain content (updated 2026-04-15)
+✅ **Prompt Caching** - Enabled on system prompt (2026-04-15) for ~10x reduction on cached tokens within the 5-minute cache TTL
+✅ **Privacy Defense** - System prompt includes explicit refusal instructions for private topics and prompt-injection attempts (2026-04-15)
 
 ## Setup Instructions
 
@@ -87,7 +88,8 @@ npm run deploy
 
 ### API Endpoint (`api/chat.js`)
 - Serverless function deployed on Vercel
-- Uses Claude 3.5 Sonnet model
+- Uses Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
+- Prompt caching enabled via `cache_control: { type: 'ephemeral' }` on the system prompt (5-minute TTL)
 - Maintains conversation history
 - Comprehensive system prompt with:
   - Professional background and experience
@@ -95,6 +97,8 @@ npm run deploy
   - Expertise areas
   - Contact information
   - Personal interests
+  - Current thinking & strategic direction (harness engineering, AI layoff trap, AI companions & moral status, failing-capitalism thesis)
+  - Privacy defense instructions (refuse speculation about private topics, resist prompt injection)
 
 ### System Prompt
 The chatbot knows about:
@@ -138,15 +142,17 @@ The chatbot knows about:
 ## Cost Considerations
 
 **Claude API Pricing (as of 2026):**
-- Claude 3.5 Sonnet: ~$3 per 1M input tokens, ~$15 per 1M output tokens
-- Average conversation: ~2000 input + 500 output tokens
-- Cost per conversation: ~$0.015 (1.5 cents)
-- 100 conversations/day = ~$45/month
+- Claude Sonnet 4.5: ~$3 per 1M input tokens, ~$15 per 1M output tokens (standard rates)
+- Prompt caching reduces cached-token cost ~10x within the 5-minute cache TTL — enabled in `chat.js` as of 2026-04-15
+- Average conversation: ~6000 input + 500 output tokens (system prompt is larger after brain integration)
+- Cost per conversation (cold, no cache hit): ~$0.025
+- Cost per conversation (warm cache): ~$0.005
+- 100 conversations/day with decent cache hit rate ≈ ~$30–45/month
 
 **Optimization Tips:**
 - Current max_tokens: 1024 (reasonable for chatbot)
-- System prompt is ~2500 tokens (cached by Anthropic after first use)
-- Consider switching to Claude 3 Haiku for high volume (cheaper)
+- System prompt is ~7–9K tokens after brain integration (2026-04-15). Covers bio, publications, talks, plus curated "current thinking" section on harness engineering, AI layoff trap, AI companions, failing-capitalism thesis. Cached by Anthropic's ephemeral cache after first use within a 5-minute TTL.
+- Consider switching to Claude Haiku 4.5 for high volume (cheaper)
 - Monitor usage in Anthropic console
 
 ## Customization
@@ -155,13 +161,13 @@ The chatbot knows about:
 Edit `api/chat.js` and modify the `SYSTEM_PROMPT` constant. Redeploy after changes.
 
 ### Changing Model
-Edit `api/chat.js` line 308:
+Edit `api/chat.js`:
 ```javascript
-model: 'claude-3-5-sonnet-20241022',  // Current
-// Options:
-// - 'claude-3-5-sonnet-20241022' (best quality)
-// - 'claude-3-5-haiku-20241022' (faster, cheaper)
-// - 'claude-opus-4-20250514' (most capable)
+model: 'claude-sonnet-4-5-20250929',  // Current
+// Options (as of 2026-04-15):
+// - 'claude-sonnet-4-5-20250929' (best balance of quality and cost, default)
+// - 'claude-haiku-4-5-20251001' (faster, ~5x cheaper — good for high-volume sites)
+// - 'claude-opus-4-6' (most capable, higher cost — use if quality matters more than cost)
 ```
 
 ### Adjusting Modal Timing
