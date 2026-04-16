@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Newsletter Digest | Marko Stokić</title>
+    <meta name="description" content="Privacy policy for the Newsletter Digest personal tool, which reads a dedicated Gmail inbox to produce local daily summaries. Single user, no third parties.">
+    <link rel="canonical" href="https://stokic.ai/privacy-newsletter-digest.html">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1.25rem; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+        h2 { font-size: 1.15rem; margin-top: 2rem; }
+        .meta { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+        a { color: #0366d6; }
+        code { background: #eee; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
+        footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #ddd; color: #666; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<h1>Newsletter Digest — Privacy Policy</h1>
+<p class="meta">Last updated: 16 April 2026</p>
+
+<p>
+    Newsletter Digest ("the app") is a personal, single-user tool built and operated by
+    Marko Stokić. It reads newsletters delivered to a dedicated Gmail inbox
+    (<code>marko.newsagent@gmail.com</code>) and produces local summaries for the
+    operator's own reading.
+</p>
+
+<h2>Who uses this app</h2>
+<p>
+    Exactly one person: the operator. There are no other users, no accounts, no sign-ups,
+    no public interface. The app does not offer any service to any third party.
+</p>
+
+<h2>What data the app accesses</h2>
+<p>
+    The app uses the Gmail API with the <code>gmail.readonly</code> scope to read messages
+    from the dedicated inbox named above. It does not read any other Gmail account, and
+    it does not send, modify, or delete email.
+</p>
+<p>
+    Raw message HTML is saved locally on the operator's computer for parsing. No message
+    content is transmitted to any server other than the Gmail API (to fetch the messages)
+    and Anthropic's Claude API (to distill the top items into a summary). Anthropic
+    receives only the subset of newsletter text shortlisted for distillation and does not
+    use API traffic for model training, per Anthropic's
+    <a href="https://www.anthropic.com/legal/privacy">published privacy policy</a>.
+</p>
+
+<h2>What data the app stores</h2>
+<ul>
+    <li>An OAuth refresh token, stored locally on the operator's machine.</li>
+    <li>Raw message HTML, stored locally for sixty days, then deleted.</li>
+    <li>A local queue file tracking unread items and token-usage counts.</li>
+    <li>Daily summary Markdown files, stored locally.</li>
+</ul>
+<p>
+    Nothing is stored in the cloud, on a database, or on any shared surface. If the
+    operator deletes the repository, all local data is gone.
+</p>
+
+<h2>Who the app shares data with</h2>
+<p>
+    No one. The app has no analytics, no telemetry, no crash reporting, no third-party
+    integrations beyond Gmail and Anthropic (both of which are direct API calls made
+    from the operator's machine, not via any intermediary server).
+</p>
+
+<h2>How to revoke access</h2>
+<p>
+    The operator can revoke the app's Gmail access at any time by visiting
+    <a href="https://myaccount.google.com/permissions">Google Account Permissions</a>
+    and removing "Newsletter Digest" from the list of apps with access.
+</p>
+
+<h2>Children's data</h2>
+<p>
+    The app is not intended for and does not knowingly handle data from children under 13.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+    If this policy changes, the updated version will be published at the same URL and
+    the "Last updated" date will be changed.
+</p>
+
+<h2>Contact</h2>
+<p>
+    Questions can be sent to <a href="mailto:marko.stokic@proton.me">marko.stokic@proton.me</a>.
+</p>
+
+<footer>
+    <p>
+        Homepage: <a href="https://stokic.ai">stokic.ai</a> ·
+        Source: the app is a personal utility and the source repository is not publicly
+        distributed.
+    </p>
+</footer>
+
+</body>
+</html>
