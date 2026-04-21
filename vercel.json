@@ -9,6 +9,8 @@
     { "source": "/beliefs/ai-divide", "destination": "/beliefs/index.html" },
     { "source": "/beliefs/new-disorder", "destination": "/beliefs/index.html" },
     { "source": "/beliefs/europe", "destination": "/beliefs/index.html" },
-    { "source": "/beliefs/us-decline", "destination": "/beliefs/index.html" }
+    { "source": "/beliefs/us-decline", "destination": "/beliefs/index.html" },
+    { "source": "/intake", "destination": "/intake.html" },
+    { "source": "/claude-guide", "destination": "/claude-guide.html" }
   ]
 }

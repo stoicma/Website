@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Claude Guide | Marko Stokić</title>
+<meta name="description" content="Rules, tools, and tips for knowledge workers working with Claude. Reference page for Marko Stokić's AI harnessing workshop." />
+<link rel="canonical" href="https://stokic.ai/claude-guide" />
+<meta property="og:title" content="The Claude Guide | Marko Stokić" />
+<meta property="og:description" content="Rules, tools, and tips for knowledge workers working with Claude." />
+<meta property="og:url" content="https://stokic.ai/claude-guide" />
+<meta property="og:type" content="article" />
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #111111; --bg-2: #1a1a1a; --bg-3: #222222;
+  --accent: #FF5722;
+  --accent-dim: rgba(255, 87, 34, 0.12);
+  --text: #ffffff; --muted: #b4b4b4; --muted-2: #868686;
+  --border: rgba(255,255,255,0.07);
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'Menlo', 'Consolas', monospace;
+  --title-size: clamp(2rem, 6vw, 5rem);
+  --h2-size: clamp(1.3rem, 3.2vw, 2.4rem);
+  --h3-size: clamp(1.05rem, 2vw, 1.5rem);
+  --body-size: clamp(0.9rem, 1.15vw, 1.05rem);
+  --small-size: clamp(0.7rem, 1vw, 0.85rem);
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --gap: clamp(0.75rem, 2vw, 1.5rem);
+  --gap-sm: clamp(0.4rem, 1vw, 0.75rem);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
+
+.layout {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) var(--pad);
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 0; padding-top: 1.5rem; }
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: clamp(1.5rem, 3vw, 2.5rem);
+  height: fit-content;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  font-size: 0.9rem;
+  padding-right: 0.5rem;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+
+.sidebar-brand {
+  font-family: var(--font-display);
+  font-size: var(--small-size);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-group { margin-bottom: 1.25rem; }
+.sidebar-group-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+.sidebar-nav-item {
+  display: block; width: 100%;
+  padding: 0.4rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  line-height: 1.35;
+}
+.sidebar-nav-item:hover { color: var(--text); }
+.sidebar-nav-item.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 1rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+}
+
+/* === Main content === */
+.content { min-width: 0; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--small-size);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--title-size);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.dek {
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  color: var(--muted);
+  max-width: 40ch;
+  line-height: 1.4;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--h2-size);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--gap);
+  scroll-margin-top: 1.5rem;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--h3-size);
+  color: var(--text);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: var(--gap-sm);
+}
+
+.section-num {
+  font-family: var(--font-display);
+  font-size: var(--small-size);
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.group-divider {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding: clamp(1.25rem, 3vw, 2rem) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.group-divider-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.group-divider-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.group-divider-sub {
+  font-size: var(--body-size);
+  color: var(--muted);
+  max-width: 40ch;
+}
+
+p { font-size: var(--body-size); color: var(--muted); margin-bottom: var(--gap); }
+p strong { color: var(--text); font-weight: 600; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+a:hover { border-color: var(--accent); }
+
+ul { list-style: none; margin-bottom: var(--gap); }
+ul li {
+  font-size: var(--body-size);
+  color: var(--muted);
+  margin-bottom: var(--gap-sm);
+  padding-left: 1.25em;
+  position: relative;
+}
+ul li::before {
+  content: '';
+  position: absolute; left: 0; top: 0.7em;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+ul li strong { color: var(--text); font-weight: 600; }
+
+.accent-bar { width: 48px; height: 3px; background: var(--accent); margin-bottom: var(--gap); }
+
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: var(--gap);
+}
+.card h3 { margin-top: 0; }
+.card-accent { border-left: 3px solid var(--accent); }
+
+.callout {
+  background: var(--accent-dim);
+  border-left: 3px solid var(--accent);
+  padding: clamp(0.9rem, 2vw, 1.25rem) clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: var(--gap);
+  font-size: var(--body-size);
+  color: var(--text);
+}
+.callout strong { color: var(--text); }
+.callout p:last-child { margin-bottom: 0; }
+
+pre, code { font-family: var(--font-mono); font-size: 0.88em; }
+code {
+  background: var(--bg-3);
+  padding: 0.15em 0.45em;
+  color: var(--accent);
+  border-radius: 2px;
+}
+pre {
+  background: #0a0a0a;
+  border: 1px solid var(--border);
+  padding: clamp(0.9rem, 2vw, 1.5rem);
+  overflow-x: auto;
+  margin-bottom: var(--gap);
+  line-height: 1.6;
+  color: var(--text);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  white-space: pre-wrap;
+}
+pre code { background: transparent; padding: 0; color: inherit; }
+.kw { color: var(--accent); }
+
+.email-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap);
+}
+@media (max-width: 720px) { .email-compare { grid-template-columns: 1fr; } }
+.email-compare > div {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+}
+.email-compare .tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+.email-compare .tag.bad { color: var(--muted-2); }
+.email-compare .tag.good { color: var(--accent); }
+
+.tool-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap);
+}
+@media (max-width: 720px) { .tool-compare { grid-template-columns: 1fr; } }
+.tool-compare > div {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.tool-compare h4 {
+  font-family: var(--font-display);
+  font-size: var(--h3-size);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.tool-compare .tool-tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.memory-figure {
+  margin: var(--gap) 0;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.memory-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.memory-figure figcaption {
+  font-size: var(--small-size);
+  color: var(--muted-2);
+  margin-top: 0.75rem;
+}
+.memory-figure figcaption a { color: var(--muted); border-bottom: none; }
+.memory-figure figcaption a:hover { color: var(--accent); }
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: clamp(2.5rem, 5vw, 4rem) 0;
+}
+
+.footer-cta {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+.footer-cta h3 { margin-top: 0; }
+
+footer {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--border);
+  font-size: var(--small-size);
+  color: var(--muted-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap);
+}
+.skill-chip {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+}
+.skill-chip .skill-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+.skill-chip .skill-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* === Toggle / Details === */
+details.toggle {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  margin-bottom: var(--gap);
+  overflow: hidden;
+}
+details.toggle > summary {
+  padding: clamp(0.75rem, 1.8vw, 1rem) clamp(1rem, 2vw, 1.25rem);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  transition: background 0.15s;
+}
+details.toggle > summary:hover { background: var(--accent-dim); }
+details.toggle > summary::-webkit-details-marker { display: none; }
+details.toggle > summary::before {
+  content: '+';
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 1.1em;
+  width: 1em;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+details.toggle[open] > summary::before { content: '−'; }
+details.toggle > .toggle-body {
+  padding: 0 clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.25rem);
+  border-top: 1px solid var(--border);
+  padding-top: clamp(0.75rem, 1.5vw, 1rem);
+}
+details.toggle > .toggle-body p:last-child { margin-bottom: 0; }
+details.toggle > .toggle-body pre { margin-bottom: 0.75rem; }
+
+.copy-btn {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.copy-btn:hover { background: var(--accent); color: var(--bg); }
+.copy-btn.copied { background: var(--accent); color: var(--bg); }
+
+/* === Resources list === */
+.resources-list {
+  display: grid;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap);
+}
+.resources-list .resource {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
+}
+.resources-list .resource-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+.resources-list .resource-sub {
+  font-size: 0.85rem;
+  color: var(--muted-2);
+  margin-bottom: 0.3rem;
+}
+.resources-list .resource a {
+  font-size: 0.82rem;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+}
+.resources-list .resource a:hover { border-bottom-color: var(--accent); }
+
+/* === Permissions table === */
+.perm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap);
+}
+@media (max-width: 720px) { .perm-grid { grid-template-columns: 1fr; } }
+.perm-grid > div {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+}
+.perm-grid .perm-tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+.perm-grid .perm-tag.safe { color: var(--accent); }
+.perm-grid .perm-tag.keep-asking { color: var(--muted-2); }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebar-brand">The Claude Guide</div>
+
+  <div class="sidebar-group">
+    <nav>
+      <ul class="sidebar-nav">
+        <li><button class="sidebar-nav-item" data-target="rule-zero">Rule zero</button></li>
+        <li><button class="sidebar-nav-item" data-target="baseline">The honest asterisk</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Rules</div>
+    <nav>
+      <ul class="sidebar-nav">
+        <li><button class="sidebar-nav-item" data-target="rule-plan">Plan before you build</button></li>
+        <li><button class="sidebar-nav-item" data-target="rule-written">Written down = real</button></li>
+        <li><button class="sidebar-nav-item" data-target="rule-colleague">Colleague, not mind-reader</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Tools</div>
+    <nav>
+      <ul class="sidebar-nav">
+        <li><button class="sidebar-nav-item" data-target="tool-desktop-vs-code">Desktop vs. Code</button></li>
+        <li><button class="sidebar-nav-item" data-target="tool-chrome">Chrome extension</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Tips</div>
+    <nav>
+      <ul class="sidebar-nav">
+        <li><button class="sidebar-nav-item" data-target="tip-skills">Skills</button></li>
+        <li><button class="sidebar-nav-item" data-target="tip-memory">CLAUDE.md + memory</button></li>
+        <li><button class="sidebar-nav-item" data-target="tip-permissions">Permissions</button></li>
+        <li><button class="sidebar-nav-item" data-target="tip-session">Session economics</button></li>
+        <li><button class="sidebar-nav-item" data-target="first-week">Your first week</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="sidebar-group">
+    <nav>
+      <ul class="sidebar-nav">
+        <li><button class="sidebar-nav-item" data-target="resources">Resources</button></li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+
+<main class="content">
+
+<div class="eyebrow">The Claude Guide</div>
+<h1>Rules, tools, tips.</h1>
+<p class="dek">A companion reference to the harnessing workshop. Rules are the principles you hold. Tools are what you reach for. Tips are the small calibrations that turn a toy into leverage.</p>
+
+<div class="accent-bar"></div>
+
+<section id="rule-zero">
+  <span class="section-num">Rule zero</span>
+  <h2>Ask Claude.</h2>
+  <p>Before Google, before docs, before the teammate you don't want to bother. Ask Claude. It doesn't judge, it's instant, and it's usually right. The reflex to ask first is the single most important habit on this page. Everything that follows is leverage stacked on top of that reflex.</p>
+</section>
+
+<hr class="divider" />
+
+<section id="baseline">
+  <span class="section-num">Honest asterisk</span>
+  <h2>Before any of this.</h2>
+  <p>Most people would be twenty percent more productive tomorrow if they installed a launcher with clipboard history and wrote ten snippets, before touching AI at all. The pre-AI productivity ceiling is embarrassingly low for most knowledge workers, and part of why the AI wins feel big is that the baseline was so slow.</p>
+  <p>If you don't already have these, fix them first. The ROI is immediate and doesn't depend on any model you'll have to re-learn every six months.</p>
+  <ul>
+    <li><strong>A launcher.</strong> <a href="https://www.raycast.com/">Raycast</a> (my pick) or <a href="https://www.alfredapp.com/">Alfred</a>. Keyboard-first access to apps, files, calculations, unit conversions, web searches, window management. Replaces half your dock and most of your trips to Spotlight.</li>
+    <li><strong>Clipboard history.</strong> Built into Raycast and Alfred, or <a href="https://clipy-app.com/">Clipy</a> standalone. Your clipboard becomes a paste buffer for the last 50 things you copied. You will not go back.</li>
+    <li><strong>Snippets / text expansion.</strong> Also in Raycast and Alfred, or <a href="https://espanso.org/">Espanso</a> free. Pick any prefix you like (I use <code>!!</code>). Type <code>!!em</code>, get your email address. Type <code>!!sig</code>, get your signature. Type <code>!!follow</code>, get your follow-up email template. Even your first-pass planning doc can be a snippet. I have a <code>!!spec</code> that expands into a fully-structured brief template I then fill in.</li>
+  </ul>
+  <p>AI is leverage on top of a workflow. If the workflow is "alt-tab between twelve tabs and retype the same phrases every day," fix that first. Claude doesn't compound on top of broken plumbing, and you'll feel smarter about the AI part once the basics aren't actively fighting you.</p>
+</section>
+
+<div class="group-divider">
+  <div>
+    <div class="group-divider-label">Section 01</div>
+    <div class="group-divider-title">Three rules.</div>
+  </div>
+  <div class="group-divider-sub">
+    Principles that hold across every tool, every task, every version of Claude you'll use. Internalize these and the tools take care of themselves.
+  </div>
+</div>
+
+<section id="rule-plan">
+  <span class="section-num">Rule 01</span>
+  <h2>Plan before you build.</h2>
+  <p>Not <em>plan before you prompt.</em> Plan before you <strong>build</strong>. The distinction matters. I never sit down and write a markdown spec by hand before a task. I plan by <em>talking to Claude</em>, and then I let the conversation produce the plan as an artifact.</p>
+
+  <h3>Where planning happens vs. where execution happens</h3>
+  <div class="tool-compare">
+    <div>
+      <span class="tool-tag">Planning</span>
+      <h4>Claude Desktop or Claude Cowork</h4>
+      <p>Conversational. Interruptible. Good at asking clarifying questions, pushing back on assumptions, and summarizing a long discussion into a clean spec. This is where the <em>shape</em> of the work gets decided.</p>
+    </div>
+    <div>
+      <span class="tool-tag">Execution</span>
+      <h4>Claude Code</h4>
+      <p>Execution-oriented. It wants to do the thing. Great for writing the code, writing the doc, running the analysis. Bad for open-ended "let's think about this." It'll try to solve before you've finished describing.</p>
+    </div>
+  </div>
+
+  <p>The workflow I use for new projects is two steps. First, a long Q&A chat in Claude Desktop where I describe the rough idea and have Claude interview me in depth: tradeoffs, concerns, UX, technical choices, edge cases. The result is an <code>idea.md</code> file that captures the decisions. Second, I hand that <code>idea.md</code> to Claude Code in a fresh terminal session and let it execute.</p>
+
+  <div class="callout">
+    <strong>The one-line snippet I paste into Desktop to start any planning chat:</strong><br />
+    <em>"Interview me in detail using AskUserQuestion about literally anything: technical implementation, UX, concerns, tradeoffs. Make sure the questions are not obvious. Be very in-depth, keep interviewing until it's complete, then write the plan."</em>
+  </div>
+
+  <h3>Plan mode inside Claude Code</h3>
+  <p>Once a project is kicked off and you're mid-work, Claude Code has its own plan mode (activated with <code>shift+tab</code> twice). Use it for <strong>bigger changes within an existing project</strong>: anything that touches more than two or three files, or anything where you want to see the approach before letting Claude loose on the codebase. It prevents Claude from over-eagerly starting implementation before you've aligned on direction.</p>
+
+  <p>Rule of thumb: Desktop for figuring out what to build. Code for building it. Plan mode when the building needs its own mini-plan.</p>
+</section>
+
+<hr class="divider" />
+
+<section id="rule-written">
+  <span class="section-num">Rule 02</span>
+  <h2>If it's not written down, it's not real.</h2>
+  <p>The single biggest shift that separates people who compound with Claude from people who don't is this: they have Claude <em>constantly writing markdown files</em>. Meeting notes. Decisions. Research. Specs. Project status. Their beliefs. Their goals. Everything that normally lives as ephemeral thought-gas becomes a file.</p>
+
+  <p>Not because they love filing systems. Because <strong>context that's written down is context Claude can use tomorrow.</strong> A decision you made in a chat two weeks ago is invisible to the next chat unless it's in a file. A research rabbit-hole you went down last month is lost unless Claude wrote the summary to disk. Your preferences, constraints, and working style are useless to tomorrow's Claude if they only live in your head.</p>
+
+  <h3>What to have Claude write down, starting today</h3>
+  <ul>
+    <li><strong>Decisions.</strong> When you settle something (pricing, a naming choice, a positioning call), ask Claude to append it to a <code>decisions.md</code> with the date and the reasoning.</li>
+    <li><strong>Meeting summaries.</strong> Paste the transcript or your notes, ask for a one-page markdown summary with action items. Save to a folder. Never lose a meeting again.</li>
+    <li><strong>Research.</strong> Every time you go down a rabbit hole, have Claude produce the written summary at the end. That's the thing that's reusable. The chat itself is disposable.</li>
+    <li><strong>Who you are and how you work.</strong> Your role, your goals, your no-gos, your writing voice. One file Claude reads before every session. This alone changes what you can expect from it.</li>
+  </ul>
+
+  <p>The medium matters. Markdown specifically is the format where LLMs and humans meet most cleanly. LLMs parse it natively without losing structure, and humans read it at a glance the same way they read a well-written email. Headings, bullets, bold, links. It's portable (any editor, any OS), version-controllable (free history in Google Docs, Notion, or git), and it works across every Claude surface.</p>
+
+  <div class="callout">
+    <strong>Team low-effort start:</strong> your team already uses Notion (or a comparable wiki). Make one page (call it <em>"Team AI Context"</em>) and put your company overview, team roles, active projects, and any shared rules for AI output (voice, banned phrases, data-sensitivity guardrails) on it. Then establish one rule: every Claude chat starts by reading that page first. Some Claude surfaces integrate directly (the Notion MCP for Desktop and Code), but even a manual "paste the URL at the start of each chat" behavior changes what you get back.
+  </div>
+
+  <details class="toggle">
+    <summary>Copy the personal seeding prompt to paste into your chats</summary>
+    <div class="toggle-body">
+      <p>Paste this once at the top of any long chat (or save it as a snippet with <code>!!me</code>). Fill in the bracketed fields. You only have to do it once per chat; Claude will carry the context forward for the rest of the session.</p>
+      <pre id="seed-prompt">Here's context about me and how I work. Please keep this in mind for the rest of our conversation.
+
+**About me**
+- Role: [your role]
+- Company: [company name + one line on what it does]
+- I work primarily on: [what fills your day]
+
+**How I communicate**
+- Tone: [direct / detailed / casual / formal]
+- Languages: [English / mixed with German / etc.]
+- Length preference: [short / thorough / depends on task]
+
+**What I reward**
+- [e.g., concrete recommendations with tradeoffs]
+- [e.g., admitting when you don't know]
+- [e.g., pushback when my logic has holes]
+
+**What frustrates me**
+- [e.g., generic advice that doesn't engage with my specifics]
+- [e.g., over-hedging, "it depends" answers]
+- [e.g., emojis, corporate speak]
+
+**Where to find more context**
+- Team shared wiki: [Notion link to Team AI Context page]
+- My current projects: [short list or link]
+
+Always check the team wiki link above before answering anything that involves company-specific info. Then help me with: [your actual task].</pre>
+      <button class="copy-btn" type="button" data-copy-from="seed-prompt">Copy prompt</button>
+    </div>
+  </details>
+</section>
+
+<hr class="divider" />
+
+<section id="rule-colleague">
+  <span class="section-num">Rule 03</span>
+  <h2>Treat Claude as a colleague, not a mind-reader.</h2>
+  <p>The people who get mediocre results from Claude brief it the way they'd brief Siri: a vague sentence, maximum five seconds of thought, and then disappointment when the output is generic. The people who get <em>great</em> results brief it the way they'd brief a smart colleague who joined the team this morning: enough context to do a good job, clear outputs, stated constraints, one good example.</p>
+
+  <p>Claude is not omniscient. It can't read your intent. It has no idea what "done" looks like for you unless you say so. It doesn't know your company's tone, your prospect's industry, your ten previous attempts at the same task. The ceiling on Claude's output is the quality of your brief.</p>
+
+  <div class="email-compare">
+    <div>
+      <span class="tag bad">Mind-reader mode</span>
+      <p style="margin-bottom: 0; color: var(--muted);"><em>"Write me a follow-up email to this prospect."</em></p>
+    </div>
+    <div>
+      <span class="tag good">Colleague mode</span>
+      <p style="margin-bottom: 0; color: var(--text);"><strong>Goal:</strong> book a 30-min second call within two weeks. <strong>Input:</strong> call transcript below. <strong>Output:</strong> one email, 80–120 words, three paragraphs. <strong>Tone:</strong> warm but not over-friendly. References two specific things from the call. <strong>Avoid:</strong> generic "circling back" openers, pricing talk, emojis.</p>
+    </div>
+  </div>
+
+  <p>Same model. Ten seconds more effort. The second one ships; the first one gets rewritten. If you've written a good brief once, save it as a skill (see below) and never write it again.</p>
+
+  <h3>Colleagues learn new things. Express-onboard them.</h3>
+  <p>A real colleague doesn't pretend to know everything on day one. They ask to read the doc, check the deck, skim the playbook, then come back up to speed. Claude is the same. If there's something Claude needs to know (a new product launch, a prospect's company site, a long internal doc, a PDF that just went out), paste the link or upload the file and say <em>"review this, then we work."</em></p>
+  <p>It takes twenty seconds. It saves the next hour of half-informed output. Think of it as express-onboarding a new hire. Same mental model, faster ramp.</p>
+
+  <div class="callout">
+    <strong>The three-times rule.</strong> If you've briefed Claude on the same kind of task three times, the brief itself is a skill. The first time you do it, write it. The third time, file it.
+  </div>
+</section>
+
+<div class="group-divider">
+  <div>
+    <div class="group-divider-label">Section 02</div>
+    <div class="group-divider-title">Two tools worth knowing.</div>
+  </div>
+  <div class="group-divider-sub">
+    Claude ships as multiple products that solve different problems. Picking the right one for the task is half the battle.
+  </div>
+</div>
+
+<section id="tool-desktop-vs-code">
+  <span class="section-num">Tool 01</span>
+  <h2>Claude Desktop vs. Claude Code.</h2>
+  <p>Same underlying model. Completely different surface. Both are useful; they're for different moments of your day.</p>
+
+  <div class="tool-compare">
+    <div>
+      <span class="tool-tag">Conversational surface</span>
+      <h4>Claude Desktop (and Claude.ai / Cowork)</h4>
+      <p>The chat app. Best for thinking out loud, planning, research, drafting, anything that's more dialogue than execution. Non-engineers feel at home here because it's just a chat. This is the right starting point for most BD, marketing, ops, and strategy workflows.</p>
+      <p style="margin-bottom: 0;"><strong>Reach for it when:</strong> you want to talk through a problem, draft something with iteration, or onboard yourself to a new topic.</p>
+    </div>
+    <div>
+      <span class="tool-tag">Execution surface</span>
+      <h4>Claude Code</h4>
+      <p>A terminal-based agent. It can read and write files on your machine, run shell commands, call APIs, use skills, orchestrate subagents. More powerful, more opinionated, more execution-oriented. Requires a bit of setup but unlocks everything in the "Tips" section below.</p>
+      <p style="margin-bottom: 0;"><strong>Reach for it when:</strong> the task involves real files, repeated workflows, skills, or anything you want Claude to actually <em>do</em> rather than just discuss.</p>
+    </div>
+  </div>
+
+  <p>The honest recommendation for someone starting out: live in Desktop for a week. Get comfortable with long chats and uploaded files. Then, the first time you think "I do this every day, I wish it happened automatically." That's when Code earns its keep.</p>
+</section>
+
+<hr class="divider" />
+
+<section id="tool-chrome">
+  <span class="section-num">Tool 02</span>
+  <h2>The Claude Chrome extension.</h2>
+  <p>When you want Claude to <em>do</em> something inside your browser (navigate to a page, fill a form, pull info from a tab you're already logged into, take a screenshot), you reach for the <a href="https://claude.com/claude-for-chrome">Claude Chrome extension</a>. It's Claude with access to your actual browsing session, including your logged-in state on Gmail, LinkedIn, Notion, and whatever else.</p>
+
+  <div class="callout">
+    <strong>Heads up: it burns tokens fast.</strong> Every screenshot the agent takes and every DOM snapshot it reads costs context. A single "go to LinkedIn, find this person, summarize their last five posts" task can consume ten to twenty times more tokens than the equivalent conversation in Desktop. Use it for tasks where browser access is genuinely the unlock; don't default to it for things you could paste into a chat.
+  </div>
+
+  <p>A small habit that makes it cleaner: <strong>keep Chrome dedicated to Claude</strong>. Use <a href="https://arc.net/">Arc</a>, Safari, Firefox, or a separate Chrome profile for your actual daily browsing, and leave the default Chrome profile empty except for the sites you actually want Claude to touch: Gmail, LinkedIn, your CRM, your Notion. This way the extension's agent-mode has a clean surface with only the tabs it needs, and your personal browsing stays separate. I use Arc for everything and Chrome is basically a "Claude's browser." It stays empty until I want Claude to do something in it.</p>
+
+  <p>One safety note: the extension asks before taking destructive actions (sending, deleting, posting), but it can still do things you'd rather it not. Run it with supervision, not in the background, until you trust its patterns on your specific workflows.</p>
+</section>
+
+<div class="group-divider">
+  <div>
+    <div class="group-divider-label">Section 03</div>
+    <div class="group-divider-title">Tips to compound.</div>
+  </div>
+  <div class="group-divider-sub">
+    The practical levers that turn "I use Claude sometimes" into "Claude is part of how I work." Pick any one and start this week.
+  </div>
+</div>
+
+<section id="tip-skills">
+  <span class="section-num">Tip 01</span>
+  <h2>Skills.</h2>
+  <p>A skill is a reusable brief you save once and Claude picks up automatically when the task matches. Technically it's a folder (with a markdown file at minimum, optionally scripts and assets) that Claude Code reads when its description matches what you're trying to do. The practical effect: you stop re-explaining the same task every time.</p>
+
+  <h3>A real skill. The first few lines of one of mine.</h3>
+  <p>This is the header of a skill I use every day. It files external sources (URLs, PDFs, files) into my personal knowledge base. You're looking at the minimum viable anatomy: frontmatter, a short body, dispatch rules. The rest of the file is ~150 more lines of mode-specific steps.</p>
+
+  <pre><code>---
+name: brain-ingest
+description: "Ingest an external source (URL, file, folder, or inbox item)
+  into Marko's personal knowledge base at ~/Documents/Obsidian/brain/.
+  Use when the user says anything like 'ingest this', 'save this to the
+  brain', 'remember this article', 'add this paper to my notes', 'process
+  my inbox', pastes a URL or file path for filing, or asks to add a new
+  project to the brain."
+argument-hint: "&lt;url&gt; | &lt;file-path&gt; | &lt;dir-path&gt; | inbox | (empty for menu)"
+user-invocable: true
+model: sonnet
+allowed-tools: [Read, Write, Edit, Glob, Grep, Bash, Agent, ToolSearch,
+  mcp__tavily__tavily_extract]
+---
+
+# Brain Ingest
+
+Ingest an external source into ~/Documents/Obsidian/brain/.
+
+## Bootstrap (every invocation, no exceptions)
+
+1. Read ~/Documents/Obsidian/brain/CLAUDE.md (the schema)
+2. Read ~/Documents/Obsidian/brain/index.md (the catalog)
+3. Parse the argument and any flags (--fast, --draft)
+
+## Dispatch by source type
+
+| Argument shape    | Mode                          |
+|-------------------|-------------------------------|
+| starts with http  | URL mode                      |
+| is a file path    | File mode                     |
+| is a directory    | Directory mode (auto-draft)   |
+| "inbox"           | Inbox mode                    |
+| empty             | Menu mode                     |
+
+...
+</code></pre>
+
+  <p>The <strong>description</strong> field is the most important part. It's not a summary for humans. It's what Claude scans to decide whether this skill applies to the current task. Make it concrete: "when the user asks for X", "when Y is mentioned", or list the exact phrases. Vague descriptions mean Claude won't trigger the skill when it should.</p>
+
+  <h3>Writing tips</h3>
+  <ul>
+    <li><strong>Don't state the obvious.</strong> Claude already knows most of what it knows. A skill earns its keep by pushing it toward non-default behavior: your org's preferences, your specific gotchas, the edge cases you keep hitting.</li>
+    <li><strong>Build a gotchas section over time.</strong> Every time the skill fails in a specific way, add the lesson. The "Gotchas" section is the highest-signal part of any mature skill.</li>
+    <li><strong>Don't railroad.</strong> Give Claude the information it needs, not a rigid step-by-step script. Skills are reused across slightly different situations; over-specification makes them brittle.</li>
+    <li><strong>The folder is the feature.</strong> Your skill can include script files, reference markdown, templates, example outputs. Claude reads them when it needs them. The best skills are folders, not just one file.</li>
+  </ul>
+
+  <h3>Anthropic's public skills. Good starters.</h3>
+  <p>Anthropic publishes a curated set of skills at <a href="https://github.com/anthropics/skills">github.com/anthropics/skills</a>. A few worth installing on day one:</p>
+  <div class="skills-grid">
+    <div class="skill-chip">
+      <div class="skill-name">skill-creator</div>
+      <div class="skill-desc">The meta-skill. Helps you write new skills correctly. Start here.</div>
+    </div>
+    <div class="skill-chip">
+      <div class="skill-name">frontend-design</div>
+      <div class="skill-desc">Gives Claude opinionated design taste. Avoids the generic "purple gradient + Inter font" AI aesthetic.</div>
+    </div>
+    <div class="skill-chip">
+      <div class="skill-name">docx / pdf / pptx / xlsx</div>
+      <div class="skill-desc">Proper Office document creation and parsing. Essential if your work involves real deliverables.</div>
+    </div>
+    <div class="skill-chip">
+      <div class="skill-name">brand-guidelines</div>
+      <div class="skill-desc">For teams with a defined brand. Keeps Claude's output on-voice.</div>
+    </div>
+    <div class="skill-chip">
+      <div class="skill-name">mcp-builder</div>
+      <div class="skill-desc">When you're ready to wire Claude to a new data source or service.</div>
+    </div>
+    <div class="skill-chip">
+      <div class="skill-name">webapp-testing</div>
+      <div class="skill-desc">Drives a browser to verify your web app actually works. Valuable even for non-engineers shipping marketing pages.</div>
+    </div>
+  </div>
+
+  <p>Where your team's skill shelf lives: one shared Google Doc or Notion page is the pragmatic default for a non-engineering team (each skill is a heading, the markdown body below). A shared Drive folder or a Google Chat space pinned with new skills both work as alternatives. Upgrade to a git repo when engineering's ready to help.</p>
+</section>
+
+<hr class="divider" />
+
+<section id="tip-memory">
+  <span class="section-num">Tip 02</span>
+  <h2>CLAUDE.md and agentic memory.</h2>
+  <p>Claude has no persistent memory by default. Every new chat starts fresh. <strong><code>CLAUDE.md</code></strong> is the file that fixes this for Claude Code. It loads automatically at the start of every session, so Claude reads it before it reads anything else in the folder.</p>
+
+  <p>The important thing to understand is <em>what CLAUDE.md is for</em>. It's a <strong>character sheet, not a manual</strong>. It describes identity (role, voice, what this agent optimizes for), locked decisions (things that should never change across sessions), and then a thin index of other files Claude can reach for on demand. Target length: about 100 lines. If yours is over 200, you've put the equipment manual where the character sheet belongs. Move reference material out into sibling files and leave a pointer.</p>
+
+  <h3>Don't write it yourself</h3>
+  <p>Inside any folder, run <code>/init</code> in Claude Code. Claude interviews you and writes the first CLAUDE.md for you. From there, make it a habit: <strong>at the end of every working session, ask Claude to update the CLAUDE.md and a <code>progress.md</code> with what just changed.</strong> The CLAUDE.md absorbs new locked decisions; the progress.md is the rolling diary of what's been shipped. This is how your project's brain stays current without you nagging it.</p>
+
+  <p>For Claude Desktop and Claude.ai users, the equivalent lives in <strong>Projects</strong>: create a project, attach files that carry context (about-me.md, brand-voice.md, current-projects.md, team-wiki.md), and every chat inside that project inherits them.</p>
+
+  <figure class="memory-figure">
+    <img src="images/claude-memory.jpg" alt="Diagram of how agentic memory layers stack: global CLAUDE.md, project CLAUDE.md, and per-session context all flow into the model's working memory." />
+    <figcaption>How agentic memory layers load on top of each other.</figcaption>
+  </figure>
+
+  <h3>What to put in your CLAUDE.md</h3>
+  <ul>
+    <li><strong>Identity.</strong> Role, what this agent is for, voice, what it optimizes for. Top 10–20 lines.</li>
+    <li><strong>Locked decisions.</strong> Tech stack, naming conventions, no-gos, positioning calls that shouldn't change across sessions.</li>
+    <li><strong>Your rules.</strong> Short, actionable. "Always quote paths with spaces." "No emojis in code." "Default to German for user-facing copy."</li>
+    <li><strong>Thin file index.</strong> One line per sibling file (DECISIONS.md, ARCHITECTURE.md, progress.md). Pointers, not contents.</li>
+  </ul>
+
+  <h3>What NOT to put in it</h3>
+  <ul>
+    <li><strong>Your whole personal biography.</strong> That belongs in a team-level context file or a personal brain folder, not in every project's CLAUDE.md.</li>
+    <li><strong>Long tutorials or tool manuals.</strong> Put those in sibling files (TOOLING.md, SETUP.md) and reference them.</li>
+    <li><strong>Week-over-week state.</strong> That belongs in progress.md or similar, so CLAUDE.md stays stable.</li>
+    <li><strong>Brain content.</strong> If you have a personal knowledge base (see below), reference it from CLAUDE.md. Don't copy pages into every project.</li>
+  </ul>
+
+  <details class="toggle">
+    <summary>Advanced move: give Claude a brain</summary>
+    <div class="toggle-body">
+      <p>Andrej Karpathy published a <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">short note on a personal "brain" pattern</a> that's worth reading. The idea: create a folder (<code>brain/</code> or <code>memory/</code>) with markdown files tracking people you've met, decisions you've made, projects in flight, beliefs you hold, open questions. Reference that folder from your CLAUDE.md so every new chat can pull from it on demand.</p>
+      <p>The compounding effect is real. Every week the brain has more. Every chat starts from a richer context than the last. What was "I should remember this" becomes "Claude already knows." It's the single highest-leverage piece of infrastructure you can build for yourself once you've been using Claude seriously for a few weeks.</p>
+      <p>Not everyone needs this on day one. But the first time you notice yourself re-typing the same context across three different projects. That's the signal. Consolidate it into a brain, point your CLAUDE.md files at it, and stop repeating yourself.</p>
+    </div>
+  </details>
+</section>
+
+<hr class="divider" />
+
+<section id="tip-permissions">
+  <span class="section-num">Tip 03</span>
+  <h2>Permissions.</h2>
+  <p>Claude Code asks for permission before running tools: reading files, writing files, running shell commands, fetching URLs, calling an MCP server. For new users this feels relentless: you're approving "read this file" twenty times per session and starting to lose the plot of what you were doing. That's safety by default, but it's not the best long-term mode for <em>you</em>.</p>
+
+  <p>The fix: teach Claude which things you've already blanket-approved for a folder or a tool. Permissions live in a settings file: <code>~/.claude/settings.json</code> globally, or <code>.claude/settings.json</code> inside any project. <strong>You don't have to edit it by hand. Ask Claude to do it for you.</strong></p>
+
+  <div class="callout">
+    <strong>Try saying this once:</strong> <em>"Add a permission to my global settings that auto-approves all Read, Grep, and Glob calls anywhere, plus read-only Bash commands like ls, cat, head, tail, pwd, git status, git diff, git log. Keep everything else asking."</em>
+    <p style="margin-top: 0.5rem;">Claude will make the edit and explain what it did. From that point on, the obvious stuff stops interrupting you.</p>
+  </div>
+
+  <h3>Safe to auto-approve vs. keep asking</h3>
+  <div class="perm-grid">
+    <div>
+      <span class="perm-tag safe">Safe to auto-approve</span>
+      <ul style="margin-bottom: 0;">
+        <li>Read-only file tools: <code>Read</code>, <code>Grep</code>, <code>Glob</code>, <code>Ls</code></li>
+        <li>Read-only shell: <code>ls</code>, <code>cat</code>, <code>head</code>, <code>tail</code>, <code>pwd</code>, <code>git status</code>, <code>git diff</code>, <code>git log</code></li>
+        <li>Public fetches: Tavily search, web docs</li>
+      </ul>
+    </div>
+    <div>
+      <span class="perm-tag keep-asking">Keep asking</span>
+      <ul style="margin-bottom: 0;">
+        <li>File writes: <code>Edit</code>, <code>Write</code>, <code>NotebookEdit</code></li>
+        <li>Mutating shell: anything that changes files or state</li>
+        <li>Destructive commands: <code>rm</code>, <code>git push --force</code>, dropping tables, <code>git reset --hard</code></li>
+        <li>Anything touching shared infrastructure or production</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>You can also scope permissions per-folder: "always allow Bash in this project but ask everywhere else." Rule of thumb: <strong>relax permissions where the blast radius is small; keep them tight where mistakes cost you.</strong> Your own sandbox folder is small-radius. A shared CRM or production database is not.</p>
+</section>
+
+<hr class="divider" />
+
+<section id="tip-session">
+  <span class="section-num">Tip 04</span>
+  <h2>Session economics.</h2>
+  <p>Every conversation with Claude burns tokens, and every plan has a cap. On the $20/month tier you will hit session limits. Fast, if you let a single chat sprawl for hours. These are the moves that stretch a subscription.</p>
+
+  <h3>Pick the right model for the task</h3>
+  <p>Claude ships in tiers. <strong>Haiku</strong> is fastest and cheapest, good for simple drafts, summaries, short questions, and anything where you'd happily accept "good enough." <strong>Sonnet</strong> is the workhorse, your default for most real work. <strong>Opus</strong> is the heaviest model. Reserve it for genuinely hard reasoning across a lot of context, or when Sonnet has already failed. Using Opus to ask "what day is it" is throwing tokens away.</p>
+
+  <h3>Dial thinking intensity</h3>
+  <p>Claude Code has thinking budgets you can ask for by name. <code>think</code> is light. <code>think hard</code> is more. <code>ultrathink</code> is maximum. Every level burns more tokens. Most tasks don't need ultrathink. It's for multi-step reasoning, architectural decisions, or debugging something slippery. For writing a memo, drafting an email, or summarizing a doc, default thinking is plenty.</p>
+
+  <h3>Use subagents for heavy lifting</h3>
+  <p>When a task involves reading a lot of material (scraping a site, digesting a big PDF, running a broad search across your codebase), dispatch a subagent instead of doing it in your main chat. The subagent burns its own tokens, does the work, and returns a summary. <strong>Your main session only sees the result, not the forty pages of raw material.</strong> This is how Anthropic's own engineers manage their context budgets, and it's the single biggest move for keeping long sessions efficient.</p>
+
+  <h3>Compact or clear long sessions</h3>
+  <p>Every turn of a conversation re-sends the prior context. Long sessions get expensive fast. Use <code>/compact</code> to summarize the conversation so far (Claude distills it and continues with the distilled version), or <code>/clear</code> to start fresh with only what matters. Doing this <em>proactively</em> (before you hit the wall) is much cheaper than being forced to by the limit.</p>
+
+  <h3>Be specific upfront</h3>
+  <p>A vague prompt leads to back-and-forth clarification, which burns tokens on every turn. Three rounds of "actually what I meant was…" costs more than a clear brief in the first message. This is Rule 3 applied to your wallet.</p>
+
+  <div class="callout">
+    <strong>A good mental model:</strong> treat your monthly session budget the way a freelance consultant treats their 40 billable hours a week. You don't burn them on low-value meetings that could've been emails. Pick the right tool, pick the right model, pick the right depth. Most people who "run out of Claude" aren't using too much. They're using it too shallowly.
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="first-week">
+  <span class="section-num">After the workshop</span>
+  <h2>Your first week.</h2>
+  <p>Pick one thing. Ship it. Tell your team what you picked.</p>
+
+  <div class="card card-accent">
+    <h3>By Sunday night</h3>
+    <p>Ship one skill. One of your repeat tasks. Thirty minutes to write. Save it into your team's shared Notion page.</p>
+  </div>
+
+  <div class="card card-accent">
+    <h3>By next Friday</h3>
+    <p>The team has five. Share yours. Steal theirs. Your team's shelf is real.</p>
+  </div>
+
+  <h3>If you get stuck</h3>
+  <ul>
+    <li><strong>If you can't pick a task,</strong> pick the one you'd most hate explaining to a new hire on their first day. That's the one.</li>
+    <li><strong>If the skill is bad,</strong> use it anyway. Fix tomorrow's version.</li>
+    <li><strong>If you don't have time,</strong> write a five-line version on your phone during a meeting you shouldn't have been in. That's the MVP.</li>
+    <li><strong>If you're not sure it's working,</strong> show it to one teammate. If they laugh and then ask for a copy, you shipped something.</li>
+  </ul>
+
+  <div class="footer-cta">
+    <h3>Questions after the workshop?</h3>
+    <p style="margin-bottom: 0.5rem;">Email me directly at <a href="mailto:marko.stokic@proton.me">marko.stokic@proton.me</a>. Tell me what you built, what broke, what the team stole first.</p>
+    <p style="margin-bottom: 0;">If you want the full workshop for a different team, or a half-day diagnostic for your org, the <a href="/intake">intake form is here</a>.</p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="resources">
+  <span class="section-num">Resources</span>
+  <h2>Links worth bookmarking.</h2>
+  <p>People and pages I found genuinely useful while putting this together. Drop in when you want to go deeper on any of it.</p>
+  <div class="resources-list">
+    <div class="resource">
+      <div class="resource-title">Anthropic's public skills library</div>
+      <div class="resource-sub">The curated set of official skills: skill-creator, frontend-design, docx/pdf/pptx/xlsx, mcp-builder, and more.</div>
+      <a href="https://github.com/anthropics/skills">github.com/anthropics/skills →</a>
+    </div>
+    <div class="resource">
+      <div class="resource-title">Skills docs: Claude Code</div>
+      <div class="resource-sub">Official docs on frontmatter fields, configuration options, hooks, and distribution.</div>
+      <a href="https://code.claude.com/docs/en/skills">code.claude.com/docs/en/skills →</a>
+    </div>
+    <div class="resource">
+      <div class="resource-title">Lessons from Building Claude Code: How We Use Skills</div>
+      <div class="resource-sub">Anthropic engineering post (March 2026), cataloguing skill types, gotchas, progressive disclosure, distribution. The single best read on skills in practice.</div>
+      <a href="https://x.com/trq212/status/2033949937936085378">x.com/trq212 →</a>
+    </div>
+    <div class="resource">
+      <div class="resource-title">Ultimate Claude Cowork Starter Pack</div>
+      <div class="resource-sub">Corey Ganim (March 2026), plugins, context files, workflows. Light on depth but useful for seeing the shape of a mature Cowork setup.</div>
+      <a href="https://x.com/coreyganim/status/2033206539595461070">x.com/coreyganim →</a>
+    </div>
+    <div class="resource">
+      <div class="resource-title">Andrej Karpathy's personal brain pattern</div>
+      <div class="resource-sub">Short note on structuring a personal knowledge base Claude can read from. Inspiration for the "brain/" pattern in Tip 02.</div>
+      <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">gist.github.com/karpathy →</a>
+    </div>
+    <div class="resource">
+      <div class="resource-title">Claude for Chrome</div>
+      <div class="resource-sub">The extension page itself: install, permissions, safety defaults.</div>
+      <a href="https://claude.com/claude-for-chrome">claude.com/claude-for-chrome →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="/">stokic.ai</a> ·
+    <a href="/beliefs">beliefs</a> ·
+    <a href="/publications">publications</a> ·
+    <a href="/speaker">speaking</a>
+  </div>
+  <div>Marko Stokić · Munich</div>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function() {
+  const buttons = Array.from(document.querySelectorAll('.sidebar-nav-item'));
+  const sections = buttons.map(btn => document.getElementById(btn.dataset.target)).filter(Boolean);
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.target);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const setActive = (id) => {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.target.offsetTop - b.target.offsetTop);
+    if (visible.length > 0) setActive(visible[0].target.id);
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  if (sections[0]) setActive(sections[0].id);
+
+  // Copy-to-clipboard for prompt blocks
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const sourceId = btn.dataset.copyFrom;
+      const src = document.getElementById(sourceId);
+      if (!src) return;
+      const text = src.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.classList.add('copied');
+        btn.textContent = 'Copied';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.textContent = original;
+        }, 1600);
+      } catch (err) {
+        btn.textContent = 'Press Ctrl+C';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
