@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pre-Workshop Interview — Marko Stokić</title>
+  <link rel="stylesheet" href="/css/intake.css">
+</head>
+<body>
+  <main id="intake-app">
+    <header id="intake-header">
+      <h1>AI Harnessing Workshop — Pre-Workshop Interview</h1>
+      <p id="intake-subtitle">Hosted by Marko Stokić · your progress is saved · ~25 minutes</p>
+    </header>
+
+    <section id="intake-consent" hidden>
+      <h2>Before we begin</h2>
+      <p>
+        This short interview lets Marko build a custom workshop around your team's actual use cases. A Claude-based interviewer (Anthropic) will ask you through it one question at a time.
+      </p>
+      <ul>
+        <li>Your answers are saved to Marko's private workspace.</li>
+        <li>The transcript is <strong>not</strong> used to train any model.</li>
+        <li>You can delete everything on request after the engagement ends.</li>
+        <li>You can leave and return to this same link anytime — progress saves automatically.</li>
+      </ul>
+      <button id="intake-consent-proceed" type="button">Start the interview</button>
+    </section>
+
+    <section id="intake-chat" hidden>
+      <div id="chat-messages" role="log" aria-live="polite"></div>
+      <form id="chat-form" autocomplete="off">
+        <textarea id="chat-input" placeholder="Type your answer... (Shift+Enter for a new line, Enter to send)" rows="3" required></textarea>
+        <div id="chat-controls">
+          <button type="submit" id="chat-send">Send</button>
+          <button type="button" id="chat-complete">Complete and submit</button>
+        </div>
+      </form>
+      <div id="chat-status"></div>
+    </section>
+
+    <section id="intake-done" hidden>
+      <h2>Thank you.</h2>
+      <p>Marko will review your answers and build the custom workshop plan. If anything else comes to mind before we meet, email him directly at <a href="mailto:marko.stokic@proton.me">marko.stokic@proton.me</a>.</p>
+    </section>
+
+    <section id="intake-error" hidden>
+      <h2>This link isn't valid.</h2>
+      <p>The interview link may have expired or been mistyped. Please email <a href="mailto:marko.stokic@proton.me">marko.stokic@proton.me</a> for a fresh link.</p>
+    </section>
+  </main>
+
+  <script src="/js/intake.js"></script>
+</body>
+</html>
