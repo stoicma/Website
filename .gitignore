@@ -23,3 +23,6 @@ Thumbs.db
 
 # Beliefs app build output
 beliefs/
+.env*.local
+.playwright-mcp/
+remotion-video/out/
