@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors } from '../utils/colors';
 import { springConfigs } from '../utils/spring-configs';
 
@@ -109,25 +109,15 @@ export const HypeCryptoPassionScene: React.FC = () => {
               transform: `rotate(${ethRotation}deg) scale(${ethScale * ethProgress})`,
             }}
           >
-            {/* Placeholder for Ethereum logo */}
-            <div
+            {/* Ethereum logo */}
+            <Img
+              src={staticFile('ethereum-logo.png')}
               style={{
-                width: 200,
-                height: 200,
-                background: colors.ethereumPurple,
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 64,
-                fontWeight: 800,
-                color: colors.white,
-                boxShadow: `0 0 ${60 * glowIntensity}px ${colors.ethereumPurple}`,
+                width: 250,
+                height: 250,
+                filter: `drop-shadow(0 0 ${60 * glowIntensity}px ${colors.ethereumPurple})`,
               }}
-            >
-              ETH
-            </div>
-            {/* TODO: <Img src={staticFile('motion/logos/Ethereum Logo.png')} /> */}
+            />
           </div>
         </AbsoluteFill>
       )}

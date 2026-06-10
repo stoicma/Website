@@ -9,7 +9,8 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.71.2"
+    "@anthropic-ai/sdk": "^0.71.2",
+    "@supabase/supabase-js": "^2.103.3"
   },
   "engines": {
     "node": ">=18.x"

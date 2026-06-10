@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors } from '../utils/colors';
 import { springConfigs } from '../utils/spring-configs';
 
@@ -11,10 +11,10 @@ export const HypeSpeakingStagesScene: React.FC = () => {
   const { fps } = useVideoConfig();
 
   const speakingEvents = [
-    { name: 'Nebular Summit', delay: 0, duration: 60 },
-    { name: 'OpenAGI Summit', delay: 50, duration: 60 },
-    { name: 'TUM Conference', delay: 100, duration: 60 },
-    { name: 'DeAI Panel Wayra', delay: 150, duration: 60 },
+    { name: 'Nebular Summit', delay: 0, duration: 60, image: 'speaking/nebular-summit.jpg' },
+    { name: 'OpenAGI Summit', delay: 50, duration: 60, image: 'speaking/openagi-summit.png' },
+    { name: 'TUM Conference', delay: 100, duration: 60, image: 'speaking/tum-conference.jpg' },
+    { name: 'DeAI Panel Wayra', delay: 150, duration: 60, image: 'speaking/deai-panel.jpg' },
   ];
 
   // Title entrance
@@ -96,23 +96,28 @@ export const HypeSpeakingStagesScene: React.FC = () => {
                 height: '60%',
               }}
             >
-              {/* Photo placeholder with border accent */}
+              {/* Photo with border accent */}
               <div
                 style={{
                   width: '100%',
                   height: '100%',
-                  background: `linear-gradient(135deg, ${colors.deepBlue} 0%, ${colors.slateGray} 100%)`,
                   borderRadius: 20,
                   border: `6px solid ${colors.amber}`,
                   boxShadow: `0 0 80px ${colors.amber}, 0 30px 60px rgba(0, 0, 0, 0.6)`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   overflow: 'hidden',
                   position: 'relative',
                 }}
               >
+                {/* Speaking photo */}
+                <Img
+                  src={staticFile(event.image)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+
                 {/* Gradient overlay for text readability */}
                 <div
                   style={{
@@ -146,29 +151,8 @@ export const HypeSpeakingStagesScene: React.FC = () => {
                   >
                     {event.name}
                   </div>
-                  <div
-                    style={{
-                      fontSize: 16,
-                      color: colors.mediumGray,
-                      marginTop: 10,
-                    }}
-                  >
-                    [Speaking Photo]
-                  </div>
-                </div>
-
-                {/* Placeholder text */}
-                <div
-                  style={{
-                    fontSize: 24,
-                    color: colors.mediumGray,
-                    textAlign: 'center',
-                  }}
-                >
-                  motion/speaking/MS_{event.name.replace(/\s+/g, '_')}.jpg
                 </div>
               </div>
-              {/* TODO: Replace with actual photos using Img component */}
             </div>
           </div>
         );

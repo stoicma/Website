@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors } from '../utils/colors';
 import { springConfigs } from '../utils/spring-configs';
 
@@ -16,24 +16,28 @@ export const HypePublicationsGridScene: React.FC = () => {
       source: 'Forbes',
       color: colors.professionalBlue,
       delay: 0,
+      image: 'forbes-ai-memory.png',
     },
     {
       title: 'Can We Ever Trust AI Agents?',
       source: 'CoinDesk',
       color: colors.cryptoGreen,
       delay: 20,
+      image: 'coindesk-trust-ai.png',
     },
     {
       title: 'The AI Doctor Will See All of You Now',
       source: 'Decrypt',
       color: colors.amber,
       delay: 40,
+      image: 'decrypt-ai-doctor.png',
     },
     {
       title: 'AI Usage in Crypto',
       source: 'Forbes',
       color: colors.professionalBlue,
       delay: 60,
+      image: 'forbes-ai-usage.png',
     },
   ];
 
@@ -104,24 +108,28 @@ export const HypePublicationsGridScene: React.FC = () => {
                 transform: `scale(${scale}) rotate(${rotation}deg)`,
               }}
             >
-              {/* Screenshot placeholder */}
+              {/* Screenshot card */}
               <div
                 style={{
                   width: '100%',
-                  height: 320,
-                  background: `linear-gradient(135deg, ${pub.color} 0%, ${colors.darkNavy} 100%)`,
+                  height: 400,
                   borderRadius: 16,
                   border: `3px solid ${pub.color}`,
                   boxShadow: `0 0 ${40 * progress}px ${pub.color}, 0 20px 40px rgba(0, 0, 0, 0.5)`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 30,
                   position: 'relative',
                   overflow: 'hidden',
                 }}
               >
+                {/* Actual screenshot */}
+                <Img
+                  src={staticFile(pub.image)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+
                 {/* Shine effect */}
                 <div
                   style={{
@@ -135,48 +143,27 @@ export const HypePublicationsGridScene: React.FC = () => {
                   }}
                 />
 
-                {/* Publication source */}
+                {/* Source badge overlay */}
                 <div
                   style={{
-                    fontSize: 24,
+                    position: 'absolute',
+                    top: 20,
+                    left: 20,
+                    fontSize: 20,
                     fontWeight: 800,
                     color: colors.white,
-                    marginBottom: 15,
                     fontFamily: 'Inter, sans-serif',
                     textTransform: 'uppercase',
-                    letterSpacing: 3,
+                    letterSpacing: 2,
+                    backgroundColor: pub.color,
+                    padding: '10px 20px',
+                    borderRadius: 8,
+                    boxShadow: `0 4px 20px rgba(0, 0, 0, 0.5)`,
                   }}
                 >
                   {pub.source}
                 </div>
-
-                {/* Title */}
-                <div
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 600,
-                    color: colors.white,
-                    textAlign: 'center',
-                    fontFamily: 'Inter, sans-serif',
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {pub.title}
-                </div>
-
-                {/* Screenshot indicator */}
-                <div
-                  style={{
-                    fontSize: 12,
-                    color: colors.lightGray,
-                    marginTop: 15,
-                    opacity: 0.6,
-                  }}
-                >
-                  [Screenshot]
-                </div>
               </div>
-              {/* TODO: Replace with actual screenshots using Img component */}
             </div>
           );
         })}

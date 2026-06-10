@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors } from '../utils/colors';
 import { springConfigs } from '../utils/spring-configs';
 
@@ -67,23 +67,15 @@ export const HypeHookScene: React.FC = () => {
             opacity: imageOpacity,
           }}
         >
-          {/* Placeholder for penguin image */}
-          <div
+          {/* Penguin image */}
+          <Img
+            src={staticFile('penguin.webp')}
             style={{
               width: '100%',
               height: '100%',
-              background: `linear-gradient(180deg, ${colors.slateGray} 0%, ${colors.darkNavy} 100%)`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 32,
-              color: colors.mediumGray,
-              fontFamily: 'Inter, sans-serif',
+              objectFit: 'cover',
             }}
-          >
-            [Penguin Walking Alone]
-          </div>
-          {/* TODO: <Img src={staticFile('motion/Nihilist Penguin Picture.webp')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> */}
+          />
         </div>
 
         {/* Glitch overlay */}
