@@ -26,3 +26,4 @@ beliefs/
 .env*.local
 .playwright-mcp/
 remotion-video/out/
+Website/
