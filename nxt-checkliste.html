@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Flight-Checkliste: AI-Workshop NXT Consulting</title>
+<style>
+  :root{--ink:#161615;--muted:#6b6b66;--line:#e6e4df;--paper:#fbfaf7;--card:#fff;--accent:#FF5722;--accent-soft:#fff1ec;--good:#1f7a4d;--good-soft:#eaf6ef}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px 80px}
+  header{padding:38px 0 22px;border-bottom:3px solid var(--ink)}
+  .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:32px;line-height:1.1;margin:8px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:15px}
+  .why{margin-top:16px;background:var(--accent-soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0;font-size:15px}
+  #progress{position:sticky;top:0;background:var(--paper);padding:14px 0 10px;z-index:10;border-bottom:1px solid var(--line)}
+  #progress .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+  #progress .fill{height:100%;width:0%;background:var(--good);border-radius:999px;transition:width .3s}
+  #progress .label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+  #progress .label b{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;display:flex;gap:16px;align-items:flex-start}
+  .num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;margin-top:2px;cursor:pointer;user-select:none;transition:background .2s}
+  .num:hover{background:var(--accent)}
+  .step.done{border-color:var(--good)}
+  .step.done .num{background:var(--good)}
+  .step.done h3{color:var(--good)}
+  .step h3{margin:0 0 6px;font-size:17px}
+  .step p{margin:0 0 8px;font-size:14.5px}
+  .step p:last-child{margin-bottom:0}
+  code{background:#f1efe9;padding:2px 7px;border-radius:5px;font-size:13.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .cmd{display:block;background:#1d1d1b;color:#e8e6e1;padding:10px 14px;border-radius:8px;margin:8px 0;font-size:13px;overflow-x:auto;white-space:nowrap}
+  .check{color:var(--good);font-weight:600;background:var(--good-soft);border-radius:8px;padding:8px 12px;font-size:14px;display:block;margin-top:8px}
+  section{margin-top:30px}
+  h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+  .guide{display:flex;gap:20px;align-items:center}
+  .guide img{flex:0 0 116px;width:116px;height:116px;border:1px solid var(--line);border-radius:10px;padding:6px;background:#fff}
+  .guide p{margin:0 0 10px;font-size:14.5px}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:9px 16px;border-radius:8px}
+  .agenda{list-style:none;padding:0;margin:0}
+  .agenda li{padding:9px 0 9px 26px;position:relative;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .agenda li:last-child{border-bottom:0}
+  .agenda li::before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .s2note{margin-top:10px;font-size:13.5px;color:var(--muted)}
+  footer{margin-top:42px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(max-width:560px){.guide{flex-direction:column;align-items:flex-start}}
+  @media print{body{background:#fff}.step,.card{break-inside:avoid}#progress{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">AI-Workshop · NXT Consulting</div>
+  <h1>Pre-Flight-Checkliste</h1>
+  <div class="sub">Session 1: <b>Donnerstag, 18. Juni</b> &nbsp;·&nbsp; Session 2: <b>Dienstag, 30. Juni</b><br>Checkliste bitte bis <b>Dienstag, 16. Juni</b> erledigen. Dauer: ca. 25 Minuten.</div>
+  <div class="why"><b>Warum das wichtig ist:</b> Setup während der Session kostet uns die ersten zehn von 90 Minuten. Wenn alle startklar sind, bauen wir ab Minute eins.</div>
+</header>
+
+<div id="progress">
+  <div class="label"><span><b id="pg-count">0 von 8</b> erledigt</span><span>Klickt die Nummer ab, wenn ein Schritt sitzt. Wird gespeichert.</span></div>
+  <div class="bar"><div class="fill" id="pg-fill"></div></div>
+</div>
+
+<section>
+  <h2>In 25 Minuten startklar</h2>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div>
+      <h3>Claude-Konto mit bezahltem Plan</h3>
+      <p>Claude Code läuft nicht auf dem Free-Plan. Ihr braucht mindestens <b>Claude Pro</b> (oder einen Team-Seat, falls ihr einen habt). Kurz auf <code>claude.ai</code> einloggen und prüfen, welcher Plan aktiv ist.</p>
+      <span class="check">Erledigt, wenn: ihr eingeloggt seid und Pro oder Team im Profil steht.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">2</div>
+    <div>
+      <h3>Claude Code installieren</h3>
+      <p><b>macOS:</b> Terminal öffnen (Spotlight: „Terminal"), dann:</p>
+      <span class="cmd">curl -fsSL https://claude.ai/install.sh | bash</span>
+      <p><b>Windows:</b> PowerShell öffnen (Startmenü: „PowerShell"), dann:</p>
+      <span class="cmd">irm https://claude.ai/install.ps1 | iex</span>
+      <p>Falls eure IT Installationen freigeben muss: bitte rechtzeitig anstoßen, nicht erst am Mittwoch.</p>
+      <span class="check">Erledigt, wenn: die Installation ohne Fehlermeldung durchläuft.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">3</div>
+    <div>
+      <h3>Einmal starten und anmelden</h3>
+      <p>Neues Terminal- bzw. PowerShell-Fenster öffnen, <code>claude</code> eintippen, Enter. Beim ersten Start öffnet sich der Browser-Login: mit eurem Claude-Konto anmelden.</p>
+      <p>Dann als Test eintippen: <i>„Erklär mir in zwei Sätzen, was du kannst."</i></p>
+      <span class="check">Erledigt, wenn: Claude euch im Terminal antwortet.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">4</div>
+    <div>
+      <h3>Zwei eurer besten Decks bereitlegen</h3>
+      <p>Sucht ein bis zwei PowerPoint-Decks raus, die euren Hausstil gut zeigen (Struktur, Titel, Look). Wer als größten Zeitfresser Folien oder Reports mitbringt (siehe Schritt 6), nutzt sie in Session 1 als Stil-Referenz für den eigenen Skill.</p>
+      <p><b>Wichtig:</b> Kundendaten vorher entfernen oder anonymisieren. Wie ihr generell mit sensiblen Kundendaten arbeitet, ist ein eigener Block in Session 1.</p>
+      <span class="check">Erledigt, wenn: die Dateien bereinigt auf eurem Rechner liegen.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">5</div>
+    <div>
+      <h3>GitHub-Konto anlegen</h3>
+      <p>Auf <code>github.com</code> ein kostenloses Konto erstellen: Sign up, E-Mail bestätigen, fertig. Kein Git-Wissen nötig. GitHub ist im Workshop der Ort, von dem ihr das Material holt, und später das Zuhause für eure Skills.</p>
+      <span class="check">Erledigt, wenn: ihr euch auf github.com einloggen könnt.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">6</div>
+    <div>
+      <h3>Eure Top-3 Zeitfresser notieren</h3>
+      <p>Drei Aufgaben, die jede Woche wiederkommen und Zeit fressen. Folien? Statusreports? Meeting-Vorbereitung? Recherche? Angebotstexte? Gute Kandidaten wiederholen sich, haben klare Schritte und nerven.</p>
+      <p><b>Warum:</b> Die Nummer 1 davon baut ihr in Session 1 als euren ersten eigenen Skill. Jede(r) baut das eigene Ding.</p>
+      <span class="check">Erledigt, wenn: drei Punkte notiert sind und ihr euren Favoriten kennt.</span>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">7</div>
+    <div>
+      <h3>Setup für die Session</h3>
+      <p>Wenn möglich: zweiter Bildschirm (Call auf dem einen, euer Terminal auf dem anderen) und ein Headset. Wir arbeiten live mit, nicht nur zuhörend.</p>
+      <span class="check">Erledigt, wenn: ihr wisst, wie ihr am Donnerstag sitzt.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Nur für Tim</h2>
+  <div class="step optional">
+    <div class="num">8</div>
+    <div>
+      <h3>NXT GitHub-Organisation anlegen</h3>
+      <p>Auf <code>github.com</code> eine kostenlose Organisation für NXT erstellen (z.B. <code>nxt-consulting</code>): eigenes Profil oben rechts, „Your organizations", „New organization", Free-Plan reicht.</p>
+      <p>Dort entsteht nach Session 1 euer gemeinsames Skill-Repository: der Ort, an dem die besten Skills der Firma landen und jede(r) sie ziehen kann. Wie das sauber läuft (wer reviewt, wie Updates verteilt werden), klären wir in den Sessions.</p>
+      <span class="check">Erledigt, wenn: die Organisation existiert.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Vorsprung holen (optional)</h2>
+  <div class="card guide" data-rv-label="Claude Guide Block">
+    <div>
+      <p><b>Der Claude Guide</b> ist eure Begleitlektüre für den Workshop: die Regeln, Tools und Tipps, die wir am Donnerstag live anwenden, zum Nachlesen. Keine Pflicht vor Session 1, aber wer vorab reinliest, startet mit Vorsprung. In der Woche zwischen den Sessions kommt ihr ohnehin hierher zurück.</p>
+      <a class="btn" href="https://stokic.ai/claude-guide">stokic.ai/claude-guide</a>
+    </div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGAQMAAACzVW0eAAAABlBMVEXw+P8WFhV/WjNFAAAAAXRSTlMAQObYZgAAAUJJREFUeNrtV0EKxEAIk/UBfdJ8fZ40DxhwTbS97cLuoeRQKaXTUgiaGDV74r84ImMfc+fDGhET55j2+vjHXV8S28zb7sPI466XGtgyS5vwPNPFBG4tbMNZS+RQDdsxnQj5LIStcpV5K7Ip8e3SaV9COj0Vui+F3ovgK7aBPC3L5uYLPaTUqqKFRNVy6FDRAsgPeTog4QI2lZqad97iSp0vE6mpk2ynZwGYjE5HqSDl4DR69joVLXQ1KdJKo0pNq45w0pESQHGP0Olv8Ck6gpN1zilOxU/B/+q6FVOHb9Qp7J6mP4X6G2x00E+jtCClU6uBjdxjWaeOZ9WklJRjQUm/kJrfahSxMn2T4VvvCBzhOCCFDrZzR+hFpsY5qV2mm0mQeGJ5w1K/RvfepcU3THHrsgkT0ikdoatZS43QnvXET/EG/olR/jbAN78AAAAASUVORK5CYII=" alt="QR-Code zum Claude Guide" width="116" height="116">
+  </div>
+</section>
+
+<section>
+  <h2>Was euch am Donnerstag erwartet</h2>
+  <div class="card" data-rv-label="Agenda-Teaser">
+    <ul class="agenda">
+      <li><b>Claude Code, hands-on.</b> Alle auf denselben Stand, und ihr baut von Anfang an selbst mit.</li>
+      <li><b>Euer erster eigener Skill.</b> Gebaut für euren größten Zeitfresser, jede(r) das eigene. Wer Folien als Pain mitbringt: dafür die zwei Decks.</li>
+      <li><b>Sensible Kundendaten.</b> Was in welches Tool darf, was nicht, und wie ihr das pro Kunde entscheidet.</li>
+    </ul>
+    <p class="s2note">Und in Session 2 am 30. Juni: eure Skills im Review, plus live ein echter Prototyp auf dem Weg in Richtung Produktion.</p>
+  </div>
+</section>
+
+<footer>
+  <b>Hakt irgendwo etwas?</b> Kurze Mail mit Screenshot an <b>marko@stokic.ai</b>. Wir lösen es vor der Session, nicht währenddessen.
+</footer>
+
+</div>
+
+<script>
+/* Done-toggles + progress bar. Click a step number to mark it done; persisted in localStorage. */
+(function(){
+  var KEY = 'nxt-preflight-done';
+  var done = JSON.parse(localStorage.getItem(KEY) || '[]');
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var fill = document.getElementById('pg-fill');
+  var count = document.getElementById('pg-count');
+  function paint(){
+    steps.forEach(function(s, i){ s.classList.toggle('done', done.indexOf(i) > -1); });
+    count.textContent = done.length + ' von ' + steps.length;
+    fill.style.width = (done.length / steps.length * 100) + '%';
+  }
+  steps.forEach(function(s, i){
+    s.querySelector('.num').addEventListener('click', function(e){
+      e.stopPropagation();
+      var at = done.indexOf(i);
+      if (at > -1) done.splice(at, 1); else done.push(i);
+      localStorage.setItem(KEY, JSON.stringify(done));
+      paint();
+    });
+  });
+  paint();
+})();</script>
+</body>
+</html>

@@ -11,6 +11,7 @@
     { "source": "/beliefs/europe", "destination": "/beliefs/index.html" },
     { "source": "/beliefs/us-decline", "destination": "/beliefs/index.html" },
     { "source": "/intake", "destination": "/intake.html" },
-    { "source": "/claude-guide", "destination": "/claude-guide.html" }
+    { "source": "/claude-guide", "destination": "/claude-guide.html" },
+    { "source": "/nxt-checkliste", "destination": "/nxt-checkliste.html" }
   ]
 }
