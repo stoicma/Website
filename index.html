@@ -122,6 +122,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Resource hints: preload LCP hero image + preconnect third-party origins -->
+    <link rel="preload" as="image" href="images/hero-speaking.jpg" fetchpriority="high">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://umami-production-767e.up.railway.app">
+
     <!-- Chatbot CSS -->
     <link rel="stylesheet" href="css/chatbot.css">
 
@@ -323,7 +328,7 @@
                         <!--End Content Left Side-->
         
                         <div class="col-2">
-                            <img src="images/skydiver.png" alt="Marko Stokić"/>
+                            <img src="images/skydiver.webp" alt="Marko Stokić skydiving" width="686" height="1200" loading="lazy" decoding="async"/>
                         </div>
         
                     </div>
@@ -350,7 +355,7 @@
                 <!--Project 1: eternity.family-->
                 <div class="bento-card bento-card--eternity">
                     <div class="bento-card-header">
-                        <img src="images/project-images/eternity.png" alt="Star constellation family tree" loading="lazy">
+                        <img src="images/project-images/eternity.webp" alt="Star constellation family tree" width="1200" height="563" loading="lazy" decoding="async">
                     </div>
                     <h3 class="bento-card-title">eternity.family</h3>
                     <p class="project-tagline">Family memory app run by 7 AI agents</p>
@@ -379,7 +384,7 @@
                 <!--Project 2: ai-psychosis.info-->
                 <div class="bento-card bento-card--psychosis">
                     <div class="bento-card-header">
-                        <img src="images/project-images/psychosis.png" alt="Digital brain illustration" loading="lazy">
+                        <img src="images/project-images/psychosis.webp" alt="Digital brain illustration" width="1200" height="563" loading="lazy" decoding="async">
                     </div>
                     <h3 class="bento-card-title">ai-psychosis.info</h3>
                     <p class="project-tagline">Educational platform + autonomous X agent</p>
@@ -415,7 +420,7 @@
                 <!--Project 3: ratemyclaudemd.com-->
                 <div class="bento-card bento-card--claudemd">
                     <div class="bento-card-header">
-                        <img src="images/project-images/claudemd.png" alt="Code editor windows" loading="lazy">
+                        <img src="images/project-images/claudemd.webp" alt="Code editor windows" width="1200" height="563" loading="lazy" decoding="async">
                     </div>
                     <h3 class="bento-card-title">ratemyclaudemd.com</h3>
                     <p class="project-tagline">CLAUDE.md review platform</p>
@@ -442,7 +447,7 @@
                 <!--Project 4: Job Alerts Pro-->
                 <div class="bento-card bento-card--jobalerts">
                     <div class="bento-card-header">
-                        <img src="images/project-images/jobalerts.png" alt="Notification cards illustration" loading="lazy">
+                        <img src="images/project-images/jobalerts.webp" alt="Notification cards illustration" width="1200" height="563" loading="lazy" decoding="async">
                     </div>
                     <h3 class="bento-card-title">Job Alerts Pro</h3>
                     <p class="project-tagline">Telegram bot scraping 13+ AI company job boards</p>
@@ -598,33 +603,33 @@
   </button>
 </div>
 
-<!-- JavaScript resources -->
-<script src="js/jquery.1.8.3.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/featherlight.min.js"></script>
-<script src="js/featherlight.gallery.min.js"></script>
-<script src="js/jquery.enllax.min.js"></script>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script src="js/jquery.stickyNavbar.min.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/images-loaded.min.js"></script>
-<script src="js/lightbox.min.js"></script>
-<script src="js/site.js"></script>
-<script src="js/chatbot.js"></script>
+<!-- JavaScript resources (defer: parse HTML first, execute in order after) -->
+<script defer src="js/jquery.1.8.3.min.js"></script>
+<script defer src="js/wow.min.js"></script>
+<script defer src="js/featherlight.min.js"></script>
+<script defer src="js/featherlight.gallery.min.js"></script>
+<script defer src="js/jquery.enllax.min.js"></script>
+<script defer src="js/jquery.scrollUp.min.js"></script>
+<script defer src="js/jquery.easing.min.js"></script>
+<script defer src="js/jquery.stickyNavbar.min.js"></script>
+<script defer src="js/jquery.waypoints.min.js"></script>
+<script defer src="js/images-loaded.min.js"></script>
+<script defer src="js/lightbox.min.js"></script>
+<script defer src="js/site.js"></script>
+<script defer src="js/chatbot.js"></script>
 
 <!-- Motion Design Libraries -->
-<script src="js/gsap.min.js"></script>
-<script src="js/ScrollTrigger.min.js"></script>
-<script src="js/lenis.min.js"></script>
-<script src="js/motion-init.js"></script>
+<script defer src="js/gsap.min.js"></script>
+<script defer src="js/ScrollTrigger.min.js"></script>
+<script defer src="js/lenis.min.js"></script>
+<script defer src="js/motion-init.js"></script>
 
 <!-- Motion One for Micro-interactions -->
-<script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.min.js"></script>
-<script src="js/micro-interactions.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.min.js" integrity="sha384-240NNoQqaQk0/4dRxy8R+AbS3OckRqXuz3BGkoXwOZEhp1QRx4nvTsUUN2EJV4uj" crossorigin="anonymous"></script>
+<script defer src="js/micro-interactions.js"></script>
 
 <!-- Custom Cursor -->
-<script src="js/cursor-effects.js"></script>
+<script defer src="js/cursor-effects.js"></script>
 
 </body>
 </html>
